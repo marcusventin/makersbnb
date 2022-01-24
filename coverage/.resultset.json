@@ -43,8 +43,57 @@
           null,
           null
         ]
+      },
+      "/Users/marcusventin/Projects/week-7-makersbnb/makersbnb/spec/space_spec.rb": {
+        "lines": [
+          1,
+          null,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          null,
+          null,
+          null
+        ]
+      },
+      "/Users/marcusventin/Projects/week-7-makersbnb/makersbnb/lib/space.rb": {
+        "lines": [
+          1,
+          null,
+          1,
+          1,
+          null,
+          1,
+          1,
+          1,
+          1,
+          1,
+          null,
+          null,
+          1,
+          null,
+          1,
+          1,
+          null,
+          0,
+          null,
+          null,
+          1,
+          null,
+          null,
+          null,
+          1,
+          null,
+          null,
+          null
+        ]
       }
     },
-    "timestamp": 1643036083
+    "timestamp": 1643042573
   }
 }
