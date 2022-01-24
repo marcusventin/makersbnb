@@ -1,1 +1,1 @@
-CREATE TABLE spaces (id SERIAL PRIMARY KEY, name VARCHAR(60), description VARCHAR(200), ppn DECIMAL(4,2)); 
+CREATE TABLE spaces (id SERIAL PRIMARY KEY, name VARCHAR(60), description VARCHAR(200), ppn INTEGER(4)); 
