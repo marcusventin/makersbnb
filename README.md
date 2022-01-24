@@ -1,4 +1,5 @@
 # MakersBnB
+This weeks challenge is to create MakerBnB (like AirnB) using the knowledge we have gained in the past weeks.
 
 ## User Stories
 
@@ -33,5 +34,5 @@ I want dates which have been booked to be marked as unavailable
 
 As a user
 So the thugs don't stop people booking my property
-I want my properties to be marked as available until I confirm them.
+I want my properties to be marked as available until I confirm them
 ```
