@@ -1,4 +1,3 @@
-
 feature 'add properties' do
   scenario 'add a single property' do
     visit '/add'

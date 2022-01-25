@@ -33,7 +33,6 @@
       },
       "/Users/marcusventin/Projects/week-7-makersbnb/makersbnb/spec/features/add_property_spec.rb": {
         "lines": [
-          null,
           1,
           1,
           1,
@@ -76,7 +75,6 @@
           null,
           null,
           1,
-          null,
           1,
           1,
           null,
@@ -87,6 +85,7 @@
           null,
           null,
           null,
+          null,
           1,
           null,
           null,
@@ -94,6 +93,6 @@
         ]
       }
     },
-    "timestamp": 1643101573
+    "timestamp": 1643102578
   }
 }
