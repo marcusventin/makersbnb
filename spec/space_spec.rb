@@ -1,4 +1,5 @@
 require 'space'
+require_relative 'setup_test_database'
 
 describe Space do
   describe '.add' do
@@ -10,4 +11,19 @@ describe Space do
       expect(test_space.ppn).to eq '100.00'
     end
   end
+
+  describe '.all' do
+    it 'displays all spaces' do
+      setup_test_database
+    test_space = Space.add(name: 'test_property', description: 'test_description', ppn: 100)
+    Space.add(name:'beach house', description:'on beach', ppn: 400)
+    all_spaces = Space.all
+    expect(all_spaces.first.name).to eq 'test_property'
+    expect(all_spaces.last.description).to eq 'on beach'
+    expect(all_spaces.length).to eq 2
+    end
+  end
+
+
+      
 end

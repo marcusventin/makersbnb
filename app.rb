@@ -13,12 +13,12 @@ class MakersBNB < Sinatra::Base
   end
 
   post '/add' do
-    session[:property_name] = params[:property_name]
+    Space.add(name: params[:property_name], description: params[:description], ppn: params[:ppn])
     redirect '/add-confirmation'
   end
 
   get '/add-confirmation' do
-    @property_name = session[:property_name]
+    @property = Space.all[0]
     erb(:confirmation)
   end
 

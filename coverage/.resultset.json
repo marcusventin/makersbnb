@@ -1,7 +1,7 @@
 {
   "RSpec": {
     "coverage": {
-      "/Users/marcusventin/Projects/week-7-makersbnb/makersbnb/app.rb": {
+      "/Users/theresaokyere/Projects/makersbnb/app.rb": {
         "lines": [
           1,
           1,
@@ -31,8 +31,10 @@
           null
         ]
       },
-      "/Users/marcusventin/Projects/week-7-makersbnb/makersbnb/spec/features/add_property_spec.rb": {
+      "/Users/theresaokyere/Projects/makersbnb/spec/features/add_property_spec.rb": {
         "lines": [
+          1,
+          1,
           1,
           1,
           1,
@@ -43,8 +45,9 @@
           null
         ]
       },
-      "/Users/marcusventin/Projects/week-7-makersbnb/makersbnb/spec/space_spec.rb": {
+      "/Users/theresaokyere/Projects/makersbnb/spec/space_spec.rb": {
         "lines": [
+          1,
           1,
           null,
           1,
@@ -55,12 +58,27 @@
           1,
           1,
           1,
+          null,
+          null,
+          null,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          null,
+          null,
+          null,
           null,
           null,
           null
         ]
       },
-      "/Users/marcusventin/Projects/week-7-makersbnb/makersbnb/lib/space.rb": {
+      "/Users/theresaokyere/Projects/makersbnb/lib/space.rb": {
         "lines": [
           1,
           null,
@@ -68,29 +86,50 @@
           1,
           null,
           1,
-          1,
-          1,
-          1,
-          1,
+          9,
+          9,
+          9,
+          9,
           null,
           null,
           1,
-          1,
+          4,
+          null,
+          null,
+          null,
+          4,
+          null,
+          null,
+          null,
+          null,
+          4,
           null,
           null,
           null,
           1,
+          2,
           null,
           null,
           null,
+          2,
+          7,
           null,
+          null,
+          null,
+          null
+        ]
+      },
+      "/Users/theresaokyere/Projects/makersbnb/spec/setup_test_database.rb": {
+        "lines": [
           1,
           null,
-          null,
+          1,
+          1,
+          1,
           null
         ]
       }
     },
-    "timestamp": 1643102754
+    "timestamp": 1643121669
   }
 }
