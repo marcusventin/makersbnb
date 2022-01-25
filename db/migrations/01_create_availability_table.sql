@@ -1,0 +1,1 @@
+CREATE TABLE availability (id SERIAL PRIMARY KEY, name VARCHAR(60), date DATE);

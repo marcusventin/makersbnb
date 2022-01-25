@@ -13,7 +13,9 @@ class MakersBNB < Sinatra::Base
   end
 
   post '/add' do
-    Space.add(name: params[:property_name], description: params[:description], ppn: params[:ppn])
+    p params[:start_date]
+    Space.add(name: params[:property_name], description: params[:description],
+      ppn: params[:ppn], start_date: params[:start_date], end_date: params[:end_date])
     redirect '/add-confirmation'
   end
 

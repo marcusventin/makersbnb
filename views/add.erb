@@ -1,16 +1,18 @@
 <form action='/add' method='post'>
 <label for= "property_name">
 Name: 
-  <input type='text' name='property_name' placeholder='enter name..' maxlength='60'>
+  <input type='text' name='property_name' placeholder='Enter name..' maxlength='60'>
   </label>
-  <lable for = 'property_description'>
-  Desciption:
-  <input type='text' name='property_description' placeholder='enter description here..'
+  <label for = 'property_description'>
+  Description:
+  <input type='text' name='property_description' placeholder='Enter description here...'
  maxlength='200' >
  </label>
  <label for "ppn">
- price:
- <input type = 'number' name='ppn' placeholder='enter your price..'>
+ Price:
+ <input type = 'number' name='ppn' placeholder='Enter your price...'>
  </label>
-  <input type='submit' value='Add'>
+  <input type='date' name='start_date' min=<%=Date.today%> >
+  <input type='date' name='end_date' min=<%=Date.today%> >
+<input type='submit' value='Add'>
 </form>
