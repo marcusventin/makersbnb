@@ -11,11 +11,9 @@ class Space
   end
 
   def self.add(name:, description:, ppn:)
-    if ENV['RACK_ENV'] == 'test'
+    ENV['RACK_ENV'] == 'test' ? 
       connection = PG.connect(dbname: 'makersbnb_test')
-    else
-      connection = PG.connect(dbname: 'makersbnb')
-    end
+      : connection = PG.connect(dbname: 'makersbnb')
 
     result = connection.exec_params(
       'INSERT INTO spaces (name, description, ppn) VALUES ($1, $2, $3)
