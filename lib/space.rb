@@ -34,9 +34,8 @@ class Space
 
     result = connection.exec('SELECT * FROM SPACES;')
 
-    result.map { |space| Space.new(id: space['id'], name: space['name'],
-      description: space['description'], ppn: space['ppn']) }
+    result.map do |space| Space.new(id: space['id'], name: space['name'],
+      description: space['description'], ppn: space['ppn'])
+    end
   end
-
-
 end
