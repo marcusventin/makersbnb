@@ -40,5 +40,10 @@ class MakersBnB < Sinatra::Base
     erb(:confirmation)
   end
 
+  get '/makersbnb/:id' do
+    @selected = Space.select(params[:id])
+    erb(:view_space)
+  end
+
   run! if app_file == $PROGRAM_NAME
 end
