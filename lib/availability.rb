@@ -1,3 +1,4 @@
+require 'pg'
 require 'date'
 
 class Availability

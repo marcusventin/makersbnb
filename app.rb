@@ -4,6 +4,7 @@ require 'pg'
 require './lib/user'
 require './lib/space'
 require './lib/availability'
+require './lib/booking'
 
 class MakersBnB < Sinatra::Base
   enable :sessions
@@ -53,14 +54,15 @@ class MakersBnB < Sinatra::Base
   end
 
   get '/makersbnb/space/:id/book/:date' do
-    p params
     @chosen_date = params[:date]
     @selected = Space.select(params[:id])
     @available_dates = Availability.select_availability(params[:id])
     erb(:book_space)
   end
 
-  get '/makersbnb/space/:id/book/:date/confirmation' do
+  get '/makersbnb/space/:id/book/:date.date/confirmation' do
+    p params
+    #Booking.create(date: params[:date], owner:, tenant:, space:, status:'pending')
   end
 
   run! if app_file == $PROGRAM_NAME

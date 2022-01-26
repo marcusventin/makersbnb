@@ -2,7 +2,7 @@ require 'space'
 
 describe Space do
   describe '.add' do
-    it 'add space to the database' do
+    it 'adds a space to the database' do
       test_space = Space.add(name: 'test_property', description: 'test_description', ppn: 100, start_date: '2022-02-02', end_date: '2022-04-06')
 
       expect(test_space).to be_a Space
