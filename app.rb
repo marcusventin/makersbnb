@@ -3,6 +3,7 @@ require 'sinatra/reloader'
 require 'pg'
 require './lib/user'
 require './lib/space'
+require './lib/availability'
 
 class MakersBnB < Sinatra::Base
   enable :sessions
@@ -30,15 +31,34 @@ end
   end
 
   post '/makersbnb/add' do
-    Space.add(name: params[:property_name], description: params[:description],
+    Space.add(name: params[:property_name], description: params[:property_description],
     ppn: params[:ppn], start_date: params[:start_date], end_date: params[:end_date])
     
-    redirect '/makersbnb/add-confirmation'
+    redirect '/makersbnb/add/confirmation'
   end
 
   get '/makersbnb/add-confirmation' do
     @property = Space.all[-1]
     erb(:confirmation)
+  end
+
+  get '/makersbnb/properties' do
+    @property_list = Space.all
+    erb(:properties)
+
+
+  get '/makersbnb/space/:id' do
+    @selected = Space.select(params[:id])
+    @available_dates = Availability.select_availability(params[:id])
+    erb(:view_space)
+  end
+
+  get '/makersbnb/space/:id/book/:date' do
+    p params
+    @chosen_date = params[:date]
+    @selected = Space.select(params[:id])
+    @available_dates = Availability.select_availability(params[:id])
+    erb(:book_space)
   end
 
   run! if app_file == $PROGRAM_NAME

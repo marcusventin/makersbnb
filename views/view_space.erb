@@ -1,0 +1,19 @@
+
+Name: <%=@selected[0].name%>
+<br>
+Description: <%=@selected[0].description%>
+<br>
+Price per night: £ <%=@selected[0].ppn%>
+<br>
+<% if @available_dates.empty? %>
+  This property is currently unavailable
+<% else %>
+  This property is available on:
+  <ul>
+    <% @available_dates.each do |date| %>
+      <li>
+        <a href="/makersbnb/space/<%=@selected[0].id%>/book/<%=date.date%>"><%=date.date%>
+      </li>
+    <% end %>
+  </ul>
+<% end %>

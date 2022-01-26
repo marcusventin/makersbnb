@@ -1,0 +1,34 @@
+Do you want to book <%=@selected[0].name%> on <%=params[:date]%>?
+<br>
+Description: <%=@selected[0].description%>
+<br>
+Price per night: £ <%=@selected[0].ppn%>
+<br>
+
+<form action='/makersbnb/space/:id/book/:date/confirmation'>
+  <input type='submit' name='submit_booking' value='Request Booking'>
+</form>
+
+<% if @available_dates.length > 2 %>
+  This space is also available on these dates:
+  <ul>
+    <% @available_dates.each do |date| %>
+      <% unless date.date == params[:date] %>
+        <li>
+          <a href="/makersbnb/space/<%=@selected[0].id%>/book/<%=date.date%>"><%=date.date%>
+        </li>
+      <% end %>
+    <% end %>
+  </ul>
+<% elsif @available_dates.length == 2 %>
+  This space is also available on this date:
+  <ul>
+    <% @available_dates.each do |date| %>
+      <% unless date.date = params[:date] %>
+        <li>
+          <a href="/makersbnb/space/<%=@selected[0].id%>/book/<%=date.date%>"><%=date.date%>
+        </li>
+      <% end %>
+    <% end %>
+  </ul>
+<% end %>

@@ -23,4 +23,18 @@ describe Space do
       expect(all_spaces.length).to eq 2
     end
   end   
+
+  describe '.select' do
+    it "returns a space's attributes" do
+      space = Space.add(name: 'test_property', description: 'test_description', ppn: 100, start_date: '2022-02-02', end_date: '2022-04-06')
+      persisted_data = PG.connect(dbname: 'makersbnb_test').query("SELECT * FROM spaces WHERE id = #{space.id}")
+      
+      selected = Space.select(persisted_data.first['id'])
+
+      expect(selected[0]).to be_a Space
+      expect(selected[0].name).to eq 'test_property'
+      expect(selected[0].description).to eq 'test_description'
+      expect(selected[0].ppn).to eq '100.00'
+    end
+  end
 end

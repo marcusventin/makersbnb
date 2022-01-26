@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <title>List of Properties</title>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="navbar-nav">
         <a class="navar_brand" href="/makersbnb">MakersBnB</a>
@@ -14,15 +15,21 @@
       </div>
     </nav>
   </head>
-  <br>
-  <div style= 'border: 4mm ridge rgba(170, 50, 220, .6)'>
-      <h2><center><u> Welcome to MakersBnB! </u><center></h2>
-  </div>
 
   <body>
-   <form action=/makersbnb/sign_up method='get'>
-      <input type='submit' value='Sign Up!'>
+    <meta charset="utf-8">
+    <h2 style="text-align: center;"><u> Properties </u></h2>
+    <ul>
+      <% @property_list.each do |property| %>
+        <li><b><%= property.name %></b><br>
+          £<%= property.ppn %><br>
+          <%= property.description %>
+        </li><br>
+      <% end %>
+    </ul>
+
+    <form action=/makersbnb/add method='get'>
+      <input type='submit' value='Add a property'>
     </form>
   </body>
-
 </html>
