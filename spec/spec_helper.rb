@@ -5,6 +5,7 @@ require 'simplecov'
 require 'simplecov-console'
 
 require_relative './setup_test_database'
+require_relative './database_helper'
 
 SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new([
   SimpleCov::Formatter::Console,
