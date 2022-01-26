@@ -1,0 +1,1 @@
+CREATE TABLE bookings (id SERIAL PRIMARY KEY, date DATE, owner VARCHAR(60), tenant VARCHAR(60), space VARCHAR(60), status VARCHAR(9);

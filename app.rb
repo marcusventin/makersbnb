@@ -55,5 +55,8 @@ class MakersBnB < Sinatra::Base
     erb(:book_space)
   end
 
+  get '/makersbnb/space/:id/book/:date/confirmation' do
+  end
+
   run! if app_file == $PROGRAM_NAME
 end
