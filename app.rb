@@ -14,11 +14,10 @@ class MakersBnB < Sinatra::Base
 
   get '/makersbnb' do
     erb :index 
-end
+  end
 
   get '/makersbnb/sign_up' do
     erb :sign_up
-    end
   end
 
   post '/makersbnb/sign_up' do
@@ -37,7 +36,7 @@ end
     redirect '/makersbnb/add/confirmation'
   end
 
-  get '/makersbnb/add-confirmation' do
+  get '/makersbnb/add/confirmation' do
     @property = Space.all[-1]
     erb(:confirmation)
   end
@@ -45,7 +44,7 @@ end
   get '/makersbnb/properties' do
     @property_list = Space.all
     erb(:properties)
-
+  end
 
   get '/makersbnb/space/:id' do
     @selected = Space.select(params[:id])
