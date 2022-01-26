@@ -36,10 +36,15 @@ class MakersBnB < Sinatra::Base
     redirect '/makersbnb/add/confirmation'
   end
 
-  get '/makersbnb/add/confirmation' do
-    @property = Space.all[0]
+  get '/makersbnb/add-confirmation' do
+    @property = Space.all[-1]
     erb(:confirmation)
   end
+
+  get '/makersbnb/properties' do
+    @property_list = Space.all
+    erb(:properties)
+
 
   get '/makersbnb/space/:id' do
     @selected = Space.select(params[:id])
