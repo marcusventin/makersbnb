@@ -41,10 +41,18 @@ class MakersBnB < Sinatra::Base
     erb(:confirmation)
   end
 
-  get '/makersbnb/view-space/:id' do
+  get '/makersbnb/space/:id' do
     @selected = Space.select(params[:id])
     @available_dates = Availability.select_availability(params[:id])
     erb(:view_space)
+  end
+
+  get '/makersbnb/space/:id/book/:date' do
+    p params
+    @chosen_date = params[:date]
+    @selected = Space.select(params[:id])
+    @available_dates = Availability.select_availability(params[:id])
+    erb(:book_space)
   end
 
   run! if app_file == $PROGRAM_NAME
