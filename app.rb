@@ -2,6 +2,7 @@ require 'sinatra/base'
 require 'sinatra/reloader'
 require 'pg'
 require './lib/user'
+require './lib/space'
 
 class MakersBnB < Sinatra::Base
   enable :sessions
