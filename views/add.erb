@@ -1,17 +1,40 @@
+<!DOCTYPE html>
+<html>
+<center>
+<h1> Add your properties here </h1>
 <form action='/makersbnb/add' method='post'>
+<br> 
   <label for= "property_name">
     Name: 
     <input type='text' name='property_name' placeholder='Enter name..' maxlength='60'>
   </label>
+  <br>
+
   <label for = 'property_description'>
     Description:
     <input type='text' name='property_description' placeholder='Enter description here...' maxlength='200' >
   </label>
+<br>
   <label for = 'ppn'>
     Price:
     <input type = 'number' name='ppn' placeholder='Enter your price...'>
   </label>
+  <br>
+  <label for = 'date'>
+  Date:
   <input type='date' name='start_date' min=<%=Date.today%> >
   <input type='date' name='end_date' min=<%=Date.today%> >
+  </label>
+  <br>
   <input type='submit' value='Add'>
+
 </form>
+</center>
+<style>
+  body {
+    background: #6272a4;
+    color: #ff5555;
+    font-family: cursive;
+  }
+  </style>
+</html>

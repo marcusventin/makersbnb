@@ -13,7 +13,7 @@ class MakersBnB < Sinatra::Base
   end
 
   get '/makersbnb' do
-    erb :index
+    erb :index 
   end
 
   get '/makersbnb/sign_up' do
@@ -37,8 +37,13 @@ class MakersBnB < Sinatra::Base
   end
 
   get '/makersbnb/add/confirmation' do
-    @property = Space.all[0]
+    @property = Space.all[-1]
     erb(:confirmation)
+  end
+
+  get '/makersbnb/properties' do
+    @property_list = Space.all
+    erb(:properties)
   end
 
   get '/makersbnb/space/:id' do

@@ -8,6 +8,7 @@ ruby '3.0.0'
 gem 'pg'
 gem 'sinatra'
 gem 'sinatra-contrib'
+gem 'bootstrap', '~> 5.0.2'
 
 group :test do
   gem 'capybara'
@@ -18,6 +19,7 @@ group :test do
   gem 'thin'
   gem 'falcon'
   gem 'webrick'
+  gem 'launchy'
 end
 
 group :development, :test do
