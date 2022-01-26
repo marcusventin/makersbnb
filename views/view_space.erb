@@ -1,0 +1,14 @@
+
+Name: <%=@selected[0].name%>
+Description: <%=@selected[0].description%>
+Price per night: £ <%=@selected[0].ppn%>
+<% if @available_dates.empty? %>
+This property is currently unavailable
+<% else %>
+This property is available on:
+<ul>
+  <% @available_dates.each do |date| %>
+  <li><%=date.date%></li>
+  <% end %>
+</ul>
+<% end %>

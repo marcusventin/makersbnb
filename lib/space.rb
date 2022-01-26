@@ -21,10 +21,13 @@ class Space
       'INSERT INTO spaces (name, description, ppn) VALUES ($1, $2, $3)
       RETURNING id, name, description, ppn;', [name, description, ppn.to_f.ceil(2)]
     )
-    Availability.add_availability(name, start_date, end_date)
+    
+    space = Space.new(id: result[0]['id'], name: result[0]['name'],
+      description: result[0]['description'], ppn: result[0]['ppn'])
 
-    Space.new(id: result[0]['id'], name: result[0]['name'],
-              description: result[0]['description'], ppn: result[0]['ppn'])
+    Availability.add_availability(space.id, name, start_date, end_date)
+
+    space
   end
 
   def self.all
