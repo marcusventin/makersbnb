@@ -18,6 +18,7 @@ group :test do
   gem 'thin'
   gem 'falcon'
   gem 'webrick'
+  gem 'launchy'
 end
 
 group :development, :test do

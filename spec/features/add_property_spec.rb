@@ -9,6 +9,6 @@ feature 'add properties' do
     fill_in 'end_date', with: (Date.today + 1).to_s
     click_button 'Add'
 
-    expect(page).to have_content 'test_property added'
+    expect(page).to have_content 'test_property has been added to the site'
   end
 end
