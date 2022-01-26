@@ -54,16 +54,27 @@ class MakersBnB < Sinatra::Base
   end
 
   get '/makersbnb/space/:id/book/:date' do
+    p params
     @chosen_date = params[:date]
     @selected = Space.select(params[:id])
     @available_dates = Availability.select_availability(params[:id])
+    session[:tenant] = 'stand-in tenant'
     erb(:book_space)
   end
 
-  get '/makersbnb/space/:id/book/:date.date/confirmation' do
+  post '/makersbnb/space/:id/book/:date/confirmation' do
     p params
-    #Booking.create(date: params[:date], owner:, tenant:, space:, status:'pending')
+    
+    Booking.create(date: params[:date], tenant: session[:tenant],
+      spaceid: params[:id], status: 'pending')
+    redirect '/makersbnb/book/confirmation'
+  end
+
+  get '/makersbnb/book/confirmation' do
+    'Your booking request has been submitted'
   end
 
   run! if app_file == $PROGRAM_NAME
 end
+
+# We can use spaceid to link to owner, property name

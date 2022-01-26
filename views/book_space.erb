@@ -5,7 +5,7 @@ Description: <%=@selected[0].description%>
 Price per night: £ <%=@selected[0].ppn%>
 <br>
 
-<form action='/makersbnb/space/:id/book/:date/confirmation'>
+<form action='/makersbnb/space/<%=@selected[0].id%>/book/<%=params[:date]%>/confirmation' method='post'>
   <input type='submit' name='submit_booking' value='Request Booking'>
 </form>
 
