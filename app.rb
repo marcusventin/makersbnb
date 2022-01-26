@@ -33,15 +33,15 @@ class MakersBnB < Sinatra::Base
     Space.add(name: params[:property_name], description: params[:property_description],
     ppn: params[:ppn], start_date: params[:start_date], end_date: params[:end_date])
     
-    redirect '/makersbnb/add-confirmation'
+    redirect '/makersbnb/add/confirmation'
   end
 
-  get '/makersbnb/add-confirmation' do
+  get '/makersbnb/add/confirmation' do
     @property = Space.all[0]
     erb(:confirmation)
   end
 
-  get '/makersbnb/:id' do
+  get '/makersbnb/view-space/:id' do
     @selected = Space.select(params[:id])
     @available_dates = Availability.select_availability(params[:id])
     erb(:view_space)

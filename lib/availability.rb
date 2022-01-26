@@ -24,7 +24,10 @@ class Availability
       connection = PG.connect(dbname: 'makersbnb_test')
       : connection = PG.connect(dbname: 'makersbnb')
 
-    result = connection.exec_params("SELECT date FROM availability WHERE spaceid = ($1);", [spaceid])
+    result = connection.exec_params(
+      "SELECT date FROM availability WHERE spaceid = ($1);", [spaceid]
+    )
+    
     result.map do |date| Availability.new(date: date['date'])
     end
   end
