@@ -4,9 +4,12 @@ require 'pg'
 require './lib/user'
 require './lib/space'
 require './lib/availability'
+require 'uri'
+require 'sinatra/flash'
 
 class MakersBnB < Sinatra::Base
   enable :sessions
+  register Sinatra::Flash
 
   configure :development do
     register Sinatra::Reloader
@@ -20,8 +23,17 @@ class MakersBnB < Sinatra::Base
     erb :sign_up
   end
 
-  post '/makersbnb/sign_up' do
-    User.sign_up(user_name: params[:user_name], password: params[:password])
+  post '/makersbnb/signup/confirm' do
+    testing = 'test@testing.com' =~ URI::MailTo::EMAIL_REGEXP
+    p testing
+
+    if params['email'] =~ URI::MailTo::EMAIL_REGEXP
+    User.sign_up(email: params[:email], password: params[:password])
+
+    else
+      flash[:notice] = "You must submit a valid email address"
+    end
+
     redirect '/makersbnb/log_in'
   end
 

@@ -9,6 +9,7 @@ gem 'pg'
 gem 'sinatra'
 gem 'sinatra-contrib'
 gem 'bootstrap', '~> 5.0.2'
+gem 'sinatra-flash'
 
 group :test do
   gem 'capybara'
