@@ -31,7 +31,7 @@ class User
       connection = PG.connect(dbname: 'makersbnb')
     end
 
-    result = connection.query('SELECT * FROM users;')
+    result = connection.query('SELECT * FROM users ORDER BY user_id DESC;')
     result[0]['user_id']
   end
 end

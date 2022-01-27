@@ -2,14 +2,17 @@ require 'pg'
 
 require_relative 'availability'
 
-class Space
-  attr_reader :id, :name, :description, :ppn
 
-  def initialize(id:, name:, description:, ppn:)
+class Space
+  attr_reader :id, :name, :description, :ppn, :owner, :ownerid
+
+  def initialize(id:, name:, description:, ppn:, owner:, ownerid: )
     @id = id
     @name = name
     @description = description
     @ppn = ppn
+    @owner = owner
+    @ownerid = ownerid
   end
 
   def self.add(name:, description:, ppn:, start_date:, end_date:, ownerid:)
@@ -28,7 +31,7 @@ class Space
 
     Space.new(
       id: result[0]['id'], name: result[0]['name'],
-      description: result[0]['description'], ppn: result[0]['ppn']
+      description: result[0]['description'], ppn: result[0]['ppn'], owner: result[0]["owner"], ownerid: result[0]["ownerid"]
     )
   end
 
@@ -41,7 +44,7 @@ class Space
 
     result.map do |space| Space.new(
       id: space['id'], name: space['name'],
-      description: space['description'], ppn: space['ppn']
+      description: space['description'], ppn: space['ppn'], owner: result[0]["owner"], ownerid: result[0]["ownerid"]
     )
     end
   end
@@ -55,8 +58,25 @@ class Space
 
     result.map do |space| Space.new(
       id: space['id'], name: space['name'],
-      description: space['description'], ppn: space['ppn']
+      description: space['description'], ppn: space['ppn'], owner: result[0]["owner"], ownerid: result[0]["ownerid"]
     )
     end
   end
+  
+  def self.select_user(user_id)
+    ENV['RACK_ENV'] == 'test' ? 
+    connection = PG.connect(dbname: 'makersbnb_test')
+    : connection = PG.connect(dbname: 'makersbnb')
+
+    result = connection.exec_params('SELECT * FROM spaces WHERE ownerid = ($1);', [user_id])
+
+    result.map do |space| Space.new(
+      id: space['id'], name: space['name'],
+      description: space['description'], ppn: space['ppn'], 
+      owner: space['owner'],
+      ownerid: space['ownerid']
+    )
+    end
+  end
+
 end

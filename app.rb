@@ -76,6 +76,12 @@ class MakersBnB < Sinatra::Base
     'Your booking request has been submitted'
   end
 
+  get "/makersbnb/:user_id" do
+    p session[:user_id]
+    @user_space = Space.select_user(session[:user_id])
+    erb :account
+  end 
+
   run! if app_file == $PROGRAM_NAME
 end
 
