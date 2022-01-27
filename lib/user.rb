@@ -6,7 +6,7 @@ class User
 
   def initialize(user_id:, email:, password:)
     @user_id = user_id
-    @email  = email 
+    @email = email 
     @password = password
   end
 
@@ -17,7 +17,7 @@ class User
       connection = PG.connect(dbname: 'makersbnb')
     end
 
-    result = connection.exec_params("INSERT INTO users (email, password) VALUES($1, $2) RETURNING email , password;", [email , password])
+    result = connection.exec_params("INSERT INTO users (email, password) VALUES($1, $2) RETURNING user_id, email, password;", [email , password])
 
     User.new(user_id: result[0]['user_id'], email: result[0]['email'], password: result[0]['password'])
   end
@@ -29,9 +29,10 @@ class User
     else
       connection = PG.connect(dbname: 'makersbnb')
     end
-
+    
     result = connection.exec_params("SELECT * FROM users WHERE user_id = $1", [user_id])
-    p User.new(user_id: result[0]['user_id'], email: result[0]['email'], password: result[0]['password'])
+    
+    User.new(user_id: result[0]['user_id'], email: result[0]['email'], password: result[0]['password'])
   end
 
   # def self.authenticate(email:, password:)
