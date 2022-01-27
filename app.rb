@@ -23,7 +23,7 @@ class MakersBnB < Sinatra::Base
 
   post '/makersbnb/sign_up' do
     User.sign_up(user_name: params[:user_name], password: params[:password])
-    session[:user_id] = User.find_id
+    p session[:user_id] = User.find_id
     redirect '/makersbnb'
   end
 
@@ -78,7 +78,7 @@ class MakersBnB < Sinatra::Base
 
   get "/makersbnb/:user_id" do
     p session[:user_id]
-    @user_space = Space.select_user(session[:user_id])
+    p @user_space = Space.select_user(session[:user_id])
     erb :account
   end 
 

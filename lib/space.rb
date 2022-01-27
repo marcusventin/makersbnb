@@ -2,11 +2,10 @@ require 'pg'
 
 require_relative 'availability'
 
-
 class Space
   attr_reader :id, :name, :description, :ppn, :owner, :ownerid
 
-  def initialize(id:, name:, description:, ppn:, owner:, ownerid: )
+  def initialize(id:, name:, description:, ppn:, owner:, ownerid:)
     @id = id
     @name = name
     @description = description
@@ -44,7 +43,8 @@ class Space
 
     result.map do |space| Space.new(
       id: space['id'], name: space['name'],
-      description: space['description'], ppn: space['ppn'], owner: result[0]["owner"], ownerid: result[0]["ownerid"]
+      description: space['description'], ppn: space['ppn'],
+      owner: result[0]["owner"], ownerid: result[0]["ownerid"]
     )
     end
   end
@@ -58,7 +58,8 @@ class Space
 
     result.map do |space| Space.new(
       id: space['id'], name: space['name'],
-      description: space['description'], ppn: space['ppn'], owner: result[0]["owner"], ownerid: result[0]["ownerid"]
+      description: space['description'], ppn: space['ppn'],
+      owner: result[0]["owner"], ownerid: result[0]["ownerid"]
     )
     end
   end
@@ -73,8 +74,7 @@ class Space
     result.map do |space| Space.new(
       id: space['id'], name: space['name'],
       description: space['description'], ppn: space['ppn'], 
-      owner: space['owner'],
-      ownerid: space['ownerid']
+      owner: space['owner'], ownerid: space['ownerid']
     )
     end
   end
