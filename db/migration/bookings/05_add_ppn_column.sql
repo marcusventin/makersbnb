@@ -1,0 +1,1 @@
+ALTER TABLE bookings ADD ppn DECIMAL(10,2);
