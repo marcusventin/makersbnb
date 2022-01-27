@@ -30,6 +30,25 @@ class Booking
     )
 
     result = connection.exec_params(
+    #   "INSERT INTO bookings (date, space, spaceid, owner, ownerid,
+    #   tenant, tenantid, ppn, status)
+    #   SELECT name, owner, ownerid, ppn
+    #   FROM spaces
+    #   WHERE spaces.id = $2
+    #   ($1,
+    #   SELECT name FROM spaces WHERE spaces.id = $2,
+    #   $2,
+    #   SELECT owner FROM spaces WHERE spaces.id = $2,
+    #   SELECT ownerid FROM spaces WHERE spaces.id = $2,
+    #   SELECT user_name FROM users WHERE users.user_id = $3,
+    #   $3,
+    #   SELECT ppn FROM spaces WHERE spaces.id = $2,
+    #   $4)
+    #   RETURNING id, date, space, spaceid, owner, ownerid, tenant, tenantid, ppn, status;",
+    #   [date, spaceid, tenantid, status]
+    # )
+      
+
       "INSERT INTO bookings (date, space, spaceid, owner, ownerid,
       tenant, tenantid, ppn, status)
       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
