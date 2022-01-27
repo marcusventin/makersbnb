@@ -30,18 +30,20 @@ class Booking
     )
 
     result = connection.exec_params(
-      "INSERT INTO bookings (date, space, spaceid, owner,
-      ownerid, tenant, tenantid, ppn, status)
+      "INSERT INTO bookings (date, space, spaceid, owner, ownerid,
+      tenant, tenantid, ppn, status)
       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
       RETURNING id, date, space, spaceid, owner, ownerid, tenant, tenantid, ppn, status;",
       [date, space_data[0]['name'], spaceid, space_data[0]['owner'],
-      space_data[0]['ownerid'], tenant_data[0]['user_name'], tenantid, space_data[0]['ppn'], status]
+      space_data[0]['ownerid'], tenant_data[0]['user_name'],
+      tenantid, space_data[0]['ppn'], status]
     )
 
     Booking.new(
-      id: result[0]['id'], date: result[0]['date'], space: result[0]['space'], spaceid: result[0]['spaceid'],
-      owner: result[0]['owner'], ownerid: result[0]['ownerid'], tenant: result[0]['tenant'], tenantid: result[0]['tenantid'],
-      ppn: result[0]['ppn'], status: result[0]['status']
+      id: result[0]['id'], date: result[0]['date'], space: result[0]['space'],
+      spaceid: result[0]['spaceid'], owner: result[0]['owner'], 
+      ownerid: result[0]['ownerid'], tenant: result[0]['tenant'],
+      tenantid: result[0]['tenantid'], ppn: result[0]['ppn'], status: result[0]['status']
     )
   end
 end

@@ -8,9 +8,15 @@ describe Booking do
       User.sign_up(user_name: 'test user 1', password: 'pass')
       User.sign_up(user_name: 'test user 2', password: 'word')
       user_result = PG.connect(dbname: 'makersbnb_test').exec('SELECT * FROM users')
-      Space.add(name: 'test property 1', description: 'test',
-        ppn: '60', start_date: Date.today.to_s, end_date: (Date.today + 1).to_s,
-        ownerid: user_result[0]['user_id'])
+      
+      Space.add(
+        name: 'test property 1',
+        description: 'test',
+        ppn: '60',
+        start_date: Date.today.to_s,
+        end_date: (Date.today + 1).to_s,
+        ownerid: user_result[0]['user_id']
+      )
       space_result = PG.connect(dbname: 'makersbnb_test').exec('SELECT * FROM spaces')
 
       test_booking = Booking.create(
