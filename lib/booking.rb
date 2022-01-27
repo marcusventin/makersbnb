@@ -35,6 +35,7 @@ class Booking
     #   SELECT name, owner, ownerid, ppn
     #   FROM spaces
     #   WHERE spaces.id = $2
+    #   SELECT 
     #   ($1,
     #   SELECT name FROM spaces WHERE spaces.id = $2,
     #   $2,
