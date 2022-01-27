@@ -4,7 +4,7 @@ describe Booking do
   describe '.create' do
     it 'allows users to create a booking' do
       test_booking = Booking.create(
-        date: '2022-06-06',
+        date: Date.today.to_s,
         tenant: 'tenant',
         spaceid: 'test_property',
         status: 'pending'

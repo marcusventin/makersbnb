@@ -3,7 +3,13 @@ require 'space'
 describe Space do
   describe '.add' do
     it 'adds a space to the database' do
-      test_space = Space.add(name: 'test_property', description: 'test_description', ppn: 100, start_date: '2022-02-02', end_date: '2022-04-06')
+      test_space = Space.add(
+        name: 'test_property',
+        description: 'test_description',
+        ppn: 100,
+        start_date: Date.today.to_s,
+        end_date: (Date.today + 1).to_s
+      )
 
       expect(test_space).to be_a Space
       expect(test_space.name).to eq 'test_property'
@@ -14,8 +20,20 @@ describe Space do
 
   describe '.all' do
     it 'displays all spaces' do
-      test_space = Space.add(name: 'test_property', description: 'test_description', ppn: 100, start_date: '2022-02-02', end_date: '2022-04-06')
-      Space.add(name: 'beach house', description: 'on beach', ppn: 400, start_date: '2022-02-02', end_date: '2022-04-06')
+      test_space = Space.add(
+        name: 'test_property',
+        description: 'test_description',
+        ppn: 100,
+        start_date: Date.today.to_s,
+        end_date: (Date.today + 1).to_s
+      )
+      Space.add(
+        name: 'beach house',
+        description: 'on beach',
+        ppn: 400,
+        start_date: Date.today.to_s,
+        end_date: (Date.today + 1).to_s
+      )
       all_spaces = Space.all
 
       expect(all_spaces.first.name).to eq 'test_property'
@@ -26,7 +44,14 @@ describe Space do
 
   describe '.select' do
     it "returns a space's attributes" do
-      space = Space.add(name: 'test_property', description: 'test_description', ppn: 100, start_date: '2022-02-02', end_date: '2022-04-06')
+      space = Space.add(
+        name: 'test_property',
+        description: 'test_description',
+        ppn: 100,
+        start_date: Date.today.to_s,
+        end_date: (Date.today + 1).to_s
+      )
+      
       persisted_data = PG.connect(dbname: 'makersbnb_test').query("SELECT * FROM spaces WHERE id = #{space.id}")
       
       selected = Space.select(persisted_data.first['id'])

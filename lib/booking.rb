@@ -23,7 +23,9 @@ class Booking
       [date, tenant, spaceid, status]
     )
 
-    Booking.new(id: result[0]['id'], date: result[0]['date'], tenant: result[0]['tenant'],
-      spaceid: result[0]['spaceid'], status: result[0]['status'])
+    Booking.new(
+      id: result[0]['id'], date: result[0]['date'], tenant: result[0]['tenant'],
+      spaceid: result[0]['spaceid'], status: result[0]['status']
+    )
   end
 end

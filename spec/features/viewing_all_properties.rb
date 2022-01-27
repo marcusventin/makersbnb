@@ -4,15 +4,15 @@ feature 'Viewing all the properties' do
       name: 'NYC Penthouse',
       description: 'Enjoy city views of Manhattan this summer!', 
       ppn: 1450, 
-      start_date: '2022-06-01', 
-      end_date: '2022-08-31'
+      start_date: Date.today.to_s, 
+      end_date: (Date.today + 1).to_s
     )
     Space.add(
       name: 'Brooklyn Duplex',
       description: 'Enjoy a suburban break in this wonderful duplex!', 
       ppn: 350, 
-      start_date: '2022-02-01', 
-      end_date: '2022-05-01'
+      start_date: Date.today.to_s, 
+      end_date: (Date.today + 1).to_s
     )
 
     visit ('/makersbnb/properties')

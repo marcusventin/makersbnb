@@ -21,13 +21,13 @@ class Space
       'INSERT INTO spaces (name, description, ppn) VALUES ($1, $2, $3)
       RETURNING id, name, description, ppn;', [name, description, ppn.to_f.ceil(2)]
     )
-    
-    space = Space.new(id: result[0]['id'], name: result[0]['name'],
-      description: result[0]['description'], ppn: result[0]['ppn'])
 
-    Availability.add_availability(space.id, name, start_date, end_date)
+    Availability.add_availability(result[0]['id'], name, start_date, end_date)
 
-    space
+    Space.new(
+      id: result[0]['id'], name: result[0]['name'],
+      description: result[0]['description'], ppn: result[0]['ppn']
+    )
   end
 
   def self.all
@@ -37,8 +37,10 @@ class Space
 
     result = connection.exec('SELECT * FROM spaces;')
 
-    result.map do |space| Space.new(id: space['id'], name: space['name'],
-      description: space['description'], ppn: space['ppn'])
+    result.map do |space| Space.new(
+      id: space['id'], name: space['name'],
+      description: space['description'], ppn: space['ppn']
+    )
     end
   end
 
@@ -49,8 +51,10 @@ class Space
 
     result = connection.exec_params('SELECT * FROM spaces WHERE id = ($1);', [id])
 
-    result.map do |space| Space.new(id: space['id'], name: space['name'],
-      description: space['description'], ppn: space['ppn'])
+    result.map do |space| Space.new(
+      id: space['id'], name: space['name'],
+      description: space['description'], ppn: space['ppn']
+    )
     end
   end
 end
