@@ -1,7 +1,6 @@
-feature 'click on property' do
+feature 'view property' do
   scenario 'view property details' do
-    add_property
-    click_button 'Continue'
+    sign_up_and_add
     visit('/makersbnb/properties')
     click_link 'test_property'
     expect(page).to have_content 'test description'

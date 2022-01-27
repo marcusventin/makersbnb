@@ -23,4 +23,15 @@ class User
     User.new(user_id: result[0]['user_id'], user_name: result[0]['user_name'],
     password: result[0]['password'])
   end
+
+  def self.find_id
+    if ENV['ENVIRONMENT'] == 'test'
+      connection = PG.connect(dbname: 'makersbnb_test')
+    else
+      connection = PG.connect(dbname: 'makersbnb')
+    end
+
+    result = connection.query('SELECT * FROM users;')
+    result[0]['user_id']
+  end
 end

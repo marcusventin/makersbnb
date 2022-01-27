@@ -3,12 +3,16 @@ require 'space'
 describe Space do
   describe '.add' do
     it 'adds a space to the database' do
+      add_user
+      result = PG.connect(dbname: 'makersbnb_test').exec('SELECT * FROM users')
+    
       test_space = Space.add(
         name: 'test_property',
         description: 'test_description',
         ppn: 100,
         start_date: Date.today.to_s,
-        end_date: (Date.today + 1).to_s
+        end_date: (Date.today + 1).to_s,
+        ownerid: result[0]['user_id']
       )
 
       expect(test_space).to be_a Space
@@ -20,19 +24,24 @@ describe Space do
 
   describe '.all' do
     it 'displays all spaces' do
+      add_user
+      result = PG.connect(dbname: 'makersbnb_test').exec('SELECT * FROM users')
+
       test_space = Space.add(
         name: 'test_property',
         description: 'test_description',
         ppn: 100,
         start_date: Date.today.to_s,
-        end_date: (Date.today + 1).to_s
+        end_date: (Date.today + 1).to_s,
+        ownerid: result[0]['user_id']
       )
       Space.add(
         name: 'beach house',
         description: 'on beach',
         ppn: 400,
         start_date: Date.today.to_s,
-        end_date: (Date.today + 1).to_s
+        end_date: (Date.today + 1).to_s,
+        ownerid: result[0]['user_id']
       )
       all_spaces = Space.all
 
@@ -44,12 +53,16 @@ describe Space do
 
   describe '.select' do
     it "returns a space's attributes" do
+      add_user
+      result = PG.connect(dbname: 'makersbnb_test').exec('SELECT * FROM users')
+      
       space = Space.add(
         name: 'test_property',
         description: 'test_description',
         ppn: 100,
         start_date: Date.today.to_s,
-        end_date: (Date.today + 1).to_s
+        end_date: (Date.today + 1).to_s,
+        ownerid: result[0]['user_id']
       )
       
       persisted_data = PG.connect(dbname: 'makersbnb_test').query("SELECT * FROM spaces WHERE id = #{space.id}")

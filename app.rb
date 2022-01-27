@@ -23,6 +23,7 @@ class MakersBnB < Sinatra::Base
 
   post '/makersbnb/sign_up' do
     User.sign_up(user_name: params[:user_name], password: params[:password])
+    session[:user_id] = User.find_id
     redirect '/makersbnb'
   end
 
@@ -31,8 +32,11 @@ class MakersBnB < Sinatra::Base
   end
 
   post '/makersbnb/add' do
-    Space.add(name: params[:property_name], description: params[:property_description],
-    ppn: params[:ppn], start_date: params[:start_date], end_date: params[:end_date])
+    Space.add(
+      name: params[:property_name], description: params[:property_description],
+      ppn: params[:ppn], start_date: params[:start_date], end_date: params[:end_date],
+      ownerid: session[:user_id]
+    )
     
     redirect '/makersbnb/add/confirmation'
   end

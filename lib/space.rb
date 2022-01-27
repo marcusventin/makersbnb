@@ -12,14 +12,16 @@ class Space
     @ppn = ppn
   end
 
-  def self.add(name:, description:, ppn:, start_date:, end_date:)
+  def self.add(name:, description:, ppn:, start_date:, end_date:, ownerid:)
     ENV['RACK_ENV'] == 'test' ? 
       connection = PG.connect(dbname: 'makersbnb_test')
       : connection = PG.connect(dbname: 'makersbnb')
 
+    owner = connection.exec("SELECT * FROM users WHERE user_id = #{ownerid};")
+
     result = connection.exec_params(
-      'INSERT INTO spaces (name, description, ppn) VALUES ($1, $2, $3)
-      RETURNING id, name, description, ppn;', [name, description, ppn.to_f.ceil(2)]
+      'INSERT INTO spaces (name, description, ppn, owner, ownerid) VALUES ($1, $2, $3, $4, $5)
+      RETURNING id, name, description, ppn;', [name, description, ppn.to_f.ceil(2), owner[0]['user_name'], ownerid]
     )
 
     Availability.add_availability(result[0]['id'], name, start_date, end_date)
