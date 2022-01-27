@@ -1,0 +1,1 @@
+ALTER TABLE spaces ADD owner VARCHAR(60);

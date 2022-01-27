@@ -57,13 +57,13 @@ class MakersBnB < Sinatra::Base
     @chosen_date = params[:date]
     @selected = Space.select(params[:id])
     @available_dates = Availability.select_availability(params[:id])
-    session[:tenant] = 'stand-in tenant'
+    session[:user] = 'stand-in user'
     erb(:book_space)
   end
 
   post '/makersbnb/space/:id/book/:date/confirmation' do
     
-    Booking.create(date: params[:date], tenant: session[:tenant],
+    Booking.create(date: params[:date], tenant: session[:user],
       spaceid: params[:id], status: 'pending')
     redirect '/makersbnb/book/confirmation'
   end
