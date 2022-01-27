@@ -23,13 +23,13 @@ describe User do
       expect(User.find(nil)).to eq nil
     end
 
-    # it 'finds a user by ID' do
-    #   user = User.sign_up(email: 'test@example.com', password: 'password123')
-    #   result = User.find(user_id: user)
+    it 'finds a user by ID' do
+      user = User.sign_up(email: 'test@example.com', password: 'password123')
+      result = User.find(user_id: user)
   
-    #   expect(result.user_id).to eq user.user_id
-    #   expect(result.email).to eq user.email
-    # end
+      expect(result.user_id).to eq user.user_id
+      expect(result.email).to eq user.email
+    end
   end
 
   # describe '.authenticate' do
