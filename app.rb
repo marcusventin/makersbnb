@@ -77,8 +77,7 @@ class MakersBnB < Sinatra::Base
   end
 
   get "/makersbnb/:user_id" do
-    p session[:user_id]
-    p @user_space = Space.select_user(session[:user_id])
+    @user_space = Space.select_user(session[:user_id])
     erb :account
   end 
 
