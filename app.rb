@@ -67,8 +67,8 @@ class MakersBnB < Sinatra::Base
 
   post '/makersbnb/space/:id/book/:date/confirmation' do
     
-    Booking.create(date: params[:date], tenant: session[:user],
-      spaceid: params[:id], status: 'pending')
+    Booking.create(date: params[:date], spaceid: params[:id],
+      tenantid: session[:user_id], status: 'pending')
     redirect '/makersbnb/book/confirmation'
   end
 
