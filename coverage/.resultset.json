@@ -18,7 +18,7 @@
           null,
           null,
           1,
-          2,
+          3,
           null,
           null,
           1,
@@ -66,6 +66,22 @@
           null,
           null,
           1,
+          null,
+          null,
+          1,
+          0,
+          null,
+          null,
+          1,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          0,
           null,
           null,
           1,
@@ -96,6 +112,18 @@
           1,
           null,
           1,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
           null,
           null
         ]
@@ -227,11 +255,58 @@
           null
         ]
       },
+      "/Users/olivia/Apprenticeship/Projects/makersbnb/spec/features/authenticating_log_in_spec.rb": {
+        "lines": [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      },
       "/Users/olivia/Apprenticeship/Projects/makersbnb/spec/features/bookings_spec.rb": {
         "lines": [
           1,
           1,
           1,
+          null,
+          null
+        ]
+      },
+      "/Users/olivia/Apprenticeship/Projects/makersbnb/spec/features/log_in_spec.rb": {
+        "lines": [
+          1,
+          1,
+          1,
+          null,
+          1,
+          0,
+          0,
+          null,
+          0,
+          null,
+          null,
           null,
           null
         ]
@@ -333,10 +408,25 @@
           null,
           null,
           null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
           null
         ]
       }
     },
-    "timestamp": 1643210219
+    "timestamp": 1643275201
   }
 }

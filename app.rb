@@ -22,7 +22,7 @@ class MakersBnB < Sinatra::Base
 
   post '/makersbnb/sign_up' do
     User.sign_up(user_name: params[:user_name], password: params[:password])
-    redirect '/makersbnb'
+    redirect '/makersbnb/log_in'
   end
 
   get '/makersbnb/add' do
@@ -61,6 +61,22 @@ class MakersBnB < Sinatra::Base
   end
 
   get '/makersbnb/space/:id/book/:date/confirmation' do
+  end
+
+  get '/makersbnb/log_in' do
+    erb :log_in
+  end
+
+  post '/makersbnb/log_in/confirmation' do
+    # user = User.authenticate(email: params[:email], password: params[:password])
+    # if user
+    #   session[:user_id] = user.user_id
+    #   redirect '/makersbnb/log_in/confirmation'
+    # else
+    #   flash[:notice] = 'Please check your email or password.'
+    #   redirect'/makersbnb/log_in'
+    # end
+    redirect'/makersbnb/log_in'
   end
 
   run! if app_file == $PROGRAM_NAME
