@@ -18,6 +18,20 @@ describe User do
     end
   end
 
+  describe '.find' do
+    it 'returns nil if there is no ID given' do
+      expect(User.find(nil)).to eq nil
+    end
+
+    # it 'finds a user by ID' do
+    #   user = User.sign_up(email: 'test@example.com', password: 'password123')
+    #   result = User.find(user_id: user)
+  
+    #   expect(result.user_id).to eq user.user_id
+    #   expect(result.email).to eq user.email
+    # end
+  end
+
   # describe '.authenticate' do
   #   it 'returns a user given a correct username and password, if one exists' do
   #     user = User.sign_up(email: 'test@example.com', password: 'password123')

@@ -18,9 +18,14 @@
       <h2><center><u> Welcome to BatsBnB! </u><center></h2>
   </div>
 
+    <% if @user %>
+      <h1>Welcome, <%= @user.email %></h1>
+
+      <% else %>
     <form action=/makersbnb/sign_up method='get'>
       <input type='submit' value='Sign Up!'>
     </form>
+    <% end %>
 
   </body>
   <style>

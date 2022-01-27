@@ -22,6 +22,18 @@ class User
     User.new(user_id: result[0]['user_id'], email: result[0]['email'], password: result[0]['password'])
   end
 
+  def self.find(user_id)
+    return nil unless user_id
+    if ENV['ENVIRONMENT'] == 'test'
+      connection = PG.connect(dbname: 'makersbnb_test')
+    else
+      connection = PG.connect(dbname: 'makersbnb')
+    end
+
+    result = connection.exec_params("SELECT * FROM users WHERE user_id = $1", [user_id])
+    User.new(user_id: result[0]['user_id'], email: result[0]['email'])
+  end
+
   # def self.authenticate(email:, password:)
   #   result = DatabaseConnection.query(
   #     "SELECT * FROM users WHERE email = $1",

@@ -16,25 +16,18 @@ class MakersBnB < Sinatra::Base
   end
 
   get '/makersbnb' do
+    @user = User.find(session[:user_id])
     erb :index 
   end
 
   get '/makersbnb/sign_up' do
     erb :sign_up
   end
-
-  post '/makersbnb/signup/confirm' do
-    testing = 'test@testing.com' =~ URI::MailTo::EMAIL_REGEXP
-    p testing
-
-    if params['email'] =~ URI::MailTo::EMAIL_REGEXP
-    User.sign_up(email: params[:email], password: params[:password])
-
-    else
-      flash[:notice] = "You must submit a valid email address"
-    end
-
-    redirect '/makersbnb/log_in'
+  
+  post '/makersbnb/sign_up' do
+    user = User.sign_up(email: params[:email], password: params[:password])
+    session[:user_id] = user.user_id
+    redirect '/makersbnb'
   end
 
   get '/makersbnb/add' do
@@ -93,3 +86,20 @@ class MakersBnB < Sinatra::Base
 
   run! if app_file == $PROGRAM_NAME
 end
+
+
+
+
+  # post '/makersbnb/signup' do
+  #   # testing = 'test@testing.com' =~ URI::MailTo::EMAIL_REGEXP
+  #   # p testing
+
+  #   # if params['email'] =~ URI::MailTo::EMAIL_REGEXP
+  #   User.sign_up(email: params[:email], password: params[:password])
+
+  #   # else
+  #   #   flash[:notice] = "You must submit a valid email address"
+  #   # end
+
+  #   redirect '/makersbnb/log_in'
+  # end
