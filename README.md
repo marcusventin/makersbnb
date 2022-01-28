@@ -59,3 +59,11 @@ Users can manage their booking requests through their account page.
     ![ScreenShot](makersbnb_database_users.png)
 4. To start the program, run `app ruby.rb` in the terminal and visit http://localhost:4567/makersbnb
     * Alternatively, run `rackup` and visit http://localhost:9292/makersbnb
+
+## Screenshots
+Homepage
+![ScreenShot](makersbnb_homepage.png)
+  
+![ScreenShot](makersbnb_view_properties.png)
+  
+![ScreenShot](makersbnb_view_property.png)
