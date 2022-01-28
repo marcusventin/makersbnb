@@ -15,6 +15,10 @@
     </nav>
     <center>
       <h2><u>Log in to BatsBnB!</u></h2>
+      <h3>
+        <%= flash[:notice] %>
+      </h3>
+      
       <form action="/makersbnb/users/log_in" method='post'>
           <label for="email">Email address:</label>
             <input type="email" class="form-control" placeholder="Enter email" name="email"><br>
@@ -31,6 +35,7 @@
         <input type='submit' value='Sign up!'>
       </form>
     </center>
+
   </body>
   <style>
   body {

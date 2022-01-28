@@ -43,11 +43,11 @@ describe User do
       expect(authenticated_user.user_id).to eq user.user_id
     end
     
-    # it 'returns nil given an incorrect email address' do
-    #   user = User.sign_up(email: 'landlord@rent.com', password: 'password123')
+    it 'returns nil given an incorrect email address' do
+      user = User.sign_up(email: 'landlord@rent.com', password: 'password123')
   
-    #   expect(User.authenticate(email: 'nottherightemail@me.com', password: 'password123')).to be_nil
-    # end
+      expect(User.authenticate(email: 'nottherightemail@me.com', password: 'password123')).to be_nil
+    end
     
   end
 end
