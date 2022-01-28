@@ -68,3 +68,4 @@ class User
   # user = User.authenticate(email: params[:email], password: params[:password])
 
 end
+
