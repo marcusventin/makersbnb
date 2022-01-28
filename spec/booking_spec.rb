@@ -5,8 +5,8 @@ require 'space'
 describe Booking do
   describe '.create' do
     it 'allows users to create a booking' do
-      User.sign_up(user_name: 'test user 1', password: 'pass')
-      User.sign_up(user_name: 'test user 2', password: 'word')
+      User.sign_up(email: '1@example.com', password: 'pass')
+      User.sign_up(email: '2@example.com', password: 'word')
       user_result = PG.connect(dbname: 'makersbnb_test').exec('SELECT * FROM users')
       
       Space.add(
@@ -30,9 +30,9 @@ describe Booking do
       expect(test_booking.date).to eq Date.today.to_s
       expect(test_booking.space).to eq 'test property 1'
       expect(test_booking.spaceid).to eq space_result[0]['id']
-      expect(test_booking.owner).to eq 'test user 1'
+      expect(test_booking.owner).to eq '1@example.com'
       expect(test_booking.ownerid).to eq user_result[0]['user_id']
-      expect(test_booking.tenant).to eq 'test user 2'
+      expect(test_booking.tenant).to eq '2@example.com'
       expect(test_booking.tenantid).to eq user_result[1]['user_id']
       expect(test_booking.ppn).to eq '60.00'
       expect(test_booking.status).to eq 'pending'

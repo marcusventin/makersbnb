@@ -22,8 +22,8 @@ class MakersBnB < Sinatra::Base
   end
 
   post '/makersbnb/sign_up' do
-    User.sign_up(user_name: params[:user_name], password: params[:password])
-    p session[:user_id] = User.find_id
+    User.sign_up(email: params[:email], password: params[:password])
+    session[:user_id] = User.find_id
     redirect '/makersbnb'
   end
 
@@ -76,7 +76,7 @@ class MakersBnB < Sinatra::Base
     'Your booking request has been submitted'
   end
 
-  get "/makersbnb/:user_id" do
+  get '/makersbnb/:user_id' do
     @user_space = Space.select_user(session[:user_id])
     erb :account
   end 

@@ -3,7 +3,7 @@ feature 'User can sign up to MakersBnb' do
     visit('/makersbnb')
 
     click_button 'Sign Up!'
-    fill_in "user_name", with: "Landlord1"
+    fill_in "email", with: "landlord1@example.com"
     # fill_in "Email Address", with: "landlord@rent.com"
     fill_in "password", with: "123landlord"
 

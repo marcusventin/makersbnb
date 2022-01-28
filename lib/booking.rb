@@ -55,7 +55,7 @@ class Booking
       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
       RETURNING id, date, space, spaceid, owner, ownerid, tenant, tenantid, ppn, status;",
       [date, space_data[0]['name'], spaceid, space_data[0]['owner'],
-      space_data[0]['ownerid'], tenant_data[0]['user_name'],
+      space_data[0]['ownerid'], tenant_data[0]['email'],
       tenantid, space_data[0]['ppn'], status]
     )
 

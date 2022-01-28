@@ -23,14 +23,14 @@ class Space
 
     result = connection.exec_params(
       'INSERT INTO spaces (name, description, ppn, owner, ownerid) VALUES ($1, $2, $3, $4, $5)
-      RETURNING id, name, description, ppn;', [name, description, ppn.to_f.ceil(2), owner[0]['user_name'], ownerid]
+      RETURNING id, name, description, ppn;', [name, description, ppn.to_f.ceil(2), owner[0]['email'], ownerid]
     )
 
     Availability.add_availability(result[0]['id'], name, start_date, end_date)
 
     Space.new(
       id: result[0]['id'], name: result[0]['name'],
-      description: result[0]['description'], ppn: result[0]['ppn'], owner: result[0]["owner"], ownerid: result[0]["ownerid"]
+      description: result[0]['description'], ppn: result[0]['ppn'], owner: result[0]['owner'], ownerid: result[0]['ownerid']
     )
   end
 
@@ -59,7 +59,7 @@ class Space
     result.map do |space| Space.new(
       id: space['id'], name: space['name'],
       description: space['description'], ppn: space['ppn'],
-      owner: result[0]["owner"], ownerid: result[0]["ownerid"]
+      owner: result[0]['owner'], ownerid: result[0]['ownerid']
     )
     end
   end
@@ -78,5 +78,4 @@ class Space
     )
     end
   end
-
 end

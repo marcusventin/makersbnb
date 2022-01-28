@@ -18,7 +18,7 @@ end
 
 def sign_up_and_add
   visit 'makersbnb/sign_up'
-  fill_in 'user_name', with: 'test user'
+  fill_in 'email', with: 'test_user@example.com'
   fill_in 'password', with: 'test password'
   click_button 'Submit'
   visit '/makersbnb/properties'

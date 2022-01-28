@@ -9,5 +9,5 @@ def setup_test_database
 end
 
 def add_user
-  User.sign_up(user_name: 'test user', password: 'test password')
+  User.sign_up(email: 'test_user@example.com', password: 'test password')
 end
