@@ -29,9 +29,31 @@ class MakersBnB < Sinatra::Base
   post '/makersbnb/users/sign_up' do
     User.sign_up(email: params[:email], password: params[:password])
     session[:user_id] = User.find_id
-    redirect '/makersbnb'
+    redirect '/makersbnb/users/log_in'
   end
 
+  get '/makersbnb/log_in' do
+    erb :log_in
+  end
+  
+  post '/makersbnb/users/log_in' do
+    user = User.authenticate(email: params[:email], password: params[:password])
+    if user
+      session[:user_id] = user.user_id
+      redirect '/makersbnb'
+    else
+      flash[:notice] = 'Please check your email or password.'
+      redirect('makersbnb/users/log_in')
+    end
+
+  end
+
+  post '/makersbnb/users/sign_out' do
+    session.clear
+    flash[:notice] = 'You have signed out.'
+    redirect '/makersbnb'
+  end
+  
   get '/makersbnb/users/:user_id' do
     @user_space = Space.select_user(session[:user_id])
     @pending_bookings = Booking.view_pending(session[:user_id])
@@ -91,9 +113,7 @@ class MakersBnB < Sinatra::Base
     'Your booking request has been submitted'
   end
 
-  get '/makersbnb/log_in' do
-    erb :log_in
-  end
+
 
   post '/makersbnb/log_in/confirmation' do
     # user = User.authenticate(email: params[:email], password: params[:password])
