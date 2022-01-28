@@ -67,7 +67,7 @@ feature 'view account' do
     )
     space_result = PG.connect(dbname: 'makersbnb_test').exec('SELECT * FROM spaces')
     
-    User.sign_up(email: 'tenant@@example.com', password: 'test password 1')
+    User.sign_up(email: 'tenant@example.com', password: 'test password 1')
     user_result = PG.connect(dbname: 'makersbnb_test').exec('SELECT * FROM users')
     
     Booking.create(
@@ -99,7 +99,7 @@ feature 'view account' do
     )
     space_result = PG.connect(dbname: 'makersbnb_test').exec('SELECT * FROM spaces')
     
-    User.sign_up(email: 'tenant@@example.com', password: 'test password 1')
+    User.sign_up(email: 'tenant@example.com', password: 'test password 1')
     user_result = PG.connect(dbname: 'makersbnb_test').exec('SELECT * FROM users')
     
     Booking.create(
@@ -110,9 +110,7 @@ feature 'view account' do
     )
   
     visit "/makersbnb/users/#{user_result[0]['user_id']}"
-    save_and_open_page
     click_button 'Decline Request'
-    save_and_open_page
     expect(page).not_to have_button 'Confirm Booking'
     expect(page).not_to have_content Date.today.to_s
   end

@@ -1,10 +1,12 @@
 <h1> Welcome to your account <%=@user_space[0].owner%><h1>
 
 <% unless @pending_bookings.length == 0 %>
-  <h2> Here are your pending bookings</h2>
+  <h2> Your pending bookings</h2>
   <% @pending_bookings.each do |pending_booking| %>
     <form action='/makersbnb/users/<%=pending_booking.ownerid%>/bookings/<%=pending_booking.id%>/response' method='post'>
-    <%=pending_booking.date%>: <%=pending_booking.space%>
+    <%=pending_booking.date%>: 
+    <a href="/makersbnb/spaces/<%=pending_booking.spaceid%>"><%=pending_booking.space%></a><br>
+    Requested by: <%=pending_booking.tenant%><br>
       <input type='submit' value='Confirm Booking' name='request_response'>
       <input type='submit' value='Decline Request' name='request_response'>
     </form>
@@ -12,16 +14,25 @@
 <% end %>
 
 <% unless @confirmed_bookings.length == 0 %>
-  <h2> Here are your confirmed bookings</h2>
-  <% @confirmed_bookings.each do |confirmed_booking| %>
-    <%=confirmed_booking.date%>: <%=confirmed_booking.space%>
-  <% end %>
+  <h2> Your confirmed bookings</h2>
+  <ul>
+    <% @confirmed_bookings.each do |confirmed_booking| %>
+      <li>
+        <%=confirmed_booking.date%>: <%=confirmed_booking.space%> <br>
+        Booked by: <%=confirmed_booking.tenant%>
+      </li>
+    <% end %>
+  </ul>
 <% end %>
 
 <% unless @user_space.length == 0%>
-  <h2> Here are your spaces </h2>
-  <% @user_space.each do |space| %>
-    <%= space.name%>
-  <% end %>
+  <h2> Your spaces </h2>
+  <ul>
+    <% @user_space.each do |space| %>
+    <li>
+      <a href="/makersbnb/spaces/<%=space.id%>"><%= space.name%></a>
+    </li>
+    <% end %>
+  </ul>
 <% end %>
 
