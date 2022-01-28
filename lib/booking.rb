@@ -91,12 +91,8 @@ class Booking
       WHERE id = $1", [booking_id]
     )
     
-    booking_data = connection.exec_params('SELECT * FROM bookings
-      WHERE id = $1;', [booking_id])
-    
-    connection.exec_params("DELETE FROM availability
-      WHERE spaceid = #{booking_data[0]['spaceid']}
-      AND date = '#{booking_data[0]['date']}'")
+    Availability.delete(booking_id)
+
   end
 
   def self.decline(booking_id)

@@ -32,4 +32,17 @@ class Availability
     result.map do |date| Availability.new(date: date['date'])
     end
   end
+
+  def self.delete(booking_id)
+    ENV['RACK_ENV'] == 'test' ? 
+    connection = PG.connect(dbname: 'makersbnb_test')
+    : connection = PG.connect(dbname: 'makersbnb')
+    
+    booking_data = connection.exec_params('SELECT * FROM bookings
+      WHERE id = $1;', [booking_id])
+    
+    connection.exec_params("DELETE FROM availability
+      WHERE spaceid = #{booking_data[0]['spaceid']}
+      AND date = '#{booking_data[0]['date']}'")
+  end
 end
