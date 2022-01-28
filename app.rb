@@ -29,14 +29,37 @@ class MakersBnB < Sinatra::Base
   post '/makersbnb/users/sign_up' do
     User.sign_up(email: params[:email], password: params[:password])
     session[:user_id] = User.find_id
-    redirect '/makersbnb'
+    redirect '/makersbnb/users/log_in'
+  end
+
+  get '/makersbnb/users/log_in' do
+    erb :log_in
+  end
+
+  post '/makersbnb/users/log_in/confirmation' do
+    user = User.authenticate(email: params[:email], password: params[:password])
+    if user
+      session[:user_id] = user.user_id
+      redirect '/makersbnb'
+    else
+      flash[:notice] = 'Please check your email or password.'
+      redirect '/makersbnb/users/log_in'
+    end
   end
 
   get '/makersbnb/users/:user_id' do
     @user_space = Space.select_user(session[:user_id])
+    @pending_bookings = Booking.view_pending(session[:user_id])
+    @confirmed_bookings = Booking.view_confirmed(session[:user_id])
     erb :account
-  end 
-  
+  end
+
+  post '/makersbnb/users/:user_id/bookings/:bookingid/response' do
+    Booking.confirm(params[:bookingid]) if params[:request_response] == 'Confirm Booking'
+    Booking.decline(params[:bookingid]) if params[:request_response] == 'Decline Request'
+    redirect '/makersbnb/users/:user_id'
+  end
+
   get '/makersbnb/spaces/add' do
     erb(:add)
   end
@@ -46,8 +69,7 @@ class MakersBnB < Sinatra::Base
       name: params[:property_name], description: params[:property_description],
       ppn: params[:ppn], start_date: params[:start_date], end_date: params[:end_date],
       ownerid: session[:user_id]
-    )
-    
+    ) 
     redirect '/makersbnb/spaces/add/confirmation'
   end
 
@@ -84,27 +106,8 @@ class MakersBnB < Sinatra::Base
     'Your booking request has been submitted'
   end
 
-  get '/makersbnb/log_in' do
-    erb :log_in
-  end
-
-  post '/makersbnb/log_in/confirmation' do
-    # user = User.authenticate(email: params[:email], password: params[:password])
-    # if user
-    #   session[:user_id] = user.user_id
-    #   redirect '/makersbnb/log_in/confirmation'
-    # else
-    #   flash[:notice] = 'Please check your email or password.'
-    #   redirect'/makersbnb/log_in'
-    # end
-    redirect'/makersbnb/log_in'
-  end
-
   run! if app_file == $PROGRAM_NAME
 end
-
-
-
 
   # post '/makersbnb/signup' do
   #   # testing = 'test@testing.com' =~ URI::MailTo::EMAIL_REGEXP
@@ -119,4 +122,3 @@ end
 
   #   redirect '/makersbnb/log_in'
   # end
-
