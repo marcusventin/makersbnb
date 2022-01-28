@@ -91,10 +91,10 @@ class Booking
     )
     
     booking_data = connection.exec_params('SELECT * FROM bookings
-      WHERE id = $1', [booking_id])
+      WHERE id = $1;', [booking_id])
     
     connection.exec_params("DELETE FROM availability
-      WHERE spaceid = #{booking_data['spaceid']}
-      AND date = #{booking_data['date']}")
+      WHERE spaceid = #{booking_data[0]['spaceid']}
+      AND date = '#{booking_data[0]['date']}'")
   end
 end
