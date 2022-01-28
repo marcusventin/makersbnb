@@ -1,10 +1,10 @@
 # MakersBnB
 
 ## Motivation
-This project enables registered users to 
-    (1) interact with a web interface to list properties on a databse;
-    (2) request to rent properties for a night;
-    (3) respond to requests made against their own properties
+This project enables registered users to:  
+    (1) interact with a web interface to list properties on a databse;  
+    (2) request to rent properties for a night;  
+    (3) respond to requests made against their own properties.  
 
 It is intended to satisfy the following user stories:
 > As a customer and landlord,  
