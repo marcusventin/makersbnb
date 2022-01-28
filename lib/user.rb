@@ -23,8 +23,7 @@ class User
 
     result = connection.exec_params("INSERT INTO users (email, password) VALUES($1, $2) RETURNING user_id, email;", [email , encrypted_password])
     # insert the encrypted password into the database, instead of the plaintext one
-    User.new(user_id: result[0]['user_id'], email: result[0]['email'],
-    password: result[0]['password'])
+    User.new(user_id: result[0]['user_id'], email: result[0]['email'],password: result[0]['password'])
   end
 
   def self.find_id
@@ -51,14 +50,19 @@ class User
     User.new(user_id: result[0]['user_id'], email: result[0]['email'], password: result[0]['password'])
   end
 
-  # def self.authenticate(email:, password:)
-  #   result = DatabaseConnection.query(
-  #     "SELECT * FROM users WHERE email = $1",
-  #     [email]
-  #   )
-  #   return unless result.any?
+  def self.authenticate(email:, password:)
+    if ENV['ENVIRONMENT'] == 'test'
+      connection = PG.connect(dbname: 'makersbnb_test')
+    else
+      connection = PG.connect(dbname: 'makersbnb')
+    end
+    
+    result = connection.exec_params("SELECT * FROM users WHERE email = $1",[email])
+    # return unless result.any?
 
-  #   User.new(result[0]['user_id'], result[0]['email'])
-  # end
+    User.new(user_id: result[0]['user_id'], email: result[0]['email'], password: result[0]['password'])
+  end
+
+  # user = User.authenticate(email: params[:email], password: params[:password])
 
 end

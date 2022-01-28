@@ -32,6 +32,28 @@ class MakersBnB < Sinatra::Base
     redirect '/makersbnb'
   end
 
+  get '/makersbnb/users/log_in' do
+    erb :log_in
+  end
+
+  post '/makersbnb/users/log_in' do
+    user = User.authenticate(email: params[:email], password: params[:password])
+    session[:user_id] = user.user_id
+    redirect '/makersbnb'
+  end
+
+  # post '/makersbnb/log_in/confirmation' do
+  #   # user = User.authenticate(email: params[:email], password: params[:password])
+  #   # if user
+  #   #   session[:user_id] = user.user_id
+  #   #   redirect '/makersbnb/log_in/confirmation'
+  #   # else
+  #   #   flash[:notice] = 'Please check your email or password.'
+  #   #   redirect'/makersbnb/log_in'
+  #   # end
+  #   redirect'/makersbnb/log_in'
+  # end
+
   get '/makersbnb/users/:user_id' do
     @user_space = Space.select_user(session[:user_id])
     erb :account
@@ -82,22 +104,6 @@ class MakersBnB < Sinatra::Base
 
   get '/makersbnb/spaces/book/confirmation' do
     'Your booking request has been submitted'
-  end
-
-  get '/makersbnb/log_in' do
-    erb :log_in
-  end
-
-  post '/makersbnb/log_in/confirmation' do
-    # user = User.authenticate(email: params[:email], password: params[:password])
-    # if user
-    #   session[:user_id] = user.user_id
-    #   redirect '/makersbnb/log_in/confirmation'
-    # else
-    #   flash[:notice] = 'Please check your email or password.'
-    #   redirect'/makersbnb/log_in'
-    # end
-    redirect'/makersbnb/log_in'
   end
 
   run! if app_file == $PROGRAM_NAME
