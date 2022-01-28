@@ -19,7 +19,7 @@
     </nav>
   <br>
   <div style= 'border: 4mm ridge rgba(170, 50, 220, .6)'>
-      <h2><center><u> BatsBnB - Hire or Rent your own Property! </u><center></h2>
+      <h1><center><u> BatsBnB - Hire or Rent your own Property! </u></center></h1>
   </div>
 <<<<<<< HEAD
   <body>
@@ -149,13 +149,14 @@ function showSlides() {
       <input type='submit' value='Sign Up!' style= "color:#ff5555" onclick="setColor('button', '#101010')">
 =======
 
-  <body><center>
+  <center>
     <h2>
-      <%= flash[:notice] %>
+      <b><%= flash[:notice] %></b>
     </h2>
 
   <% if @user %>
     <h3>Welcome, <%= @user.email %></h3>
+    View properties <a href="/makersbnb/spaces">here!</a>
     <form action="/makersbnb/users/sign_out" method="post">
       <input type="submit" value="Sign out" />
     </form>
@@ -180,6 +181,7 @@ function showSlides() {
     color: #ff5555;
     font-family: cursive;
   }
+<<<<<<< HEAD
   a:hover {
     color: white;
     background-color: transparent;
@@ -189,6 +191,18 @@ function showSlides() {
     color: yellow;
     background-color: transparent;
     text-decoration: underline;
+=======
+
+  a:link, a:visited {
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  }
+
+  a:hover, a:active {
+    background-color: red;
+>>>>>>> f442ef0 (Updated styling of homepage)
   }
 
   </style>
