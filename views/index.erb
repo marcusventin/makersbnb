@@ -15,12 +15,17 @@
     </nav>
   <br>
   <div style= 'border: 4mm ridge rgba(170, 50, 220, .6)'>
-      <h2><center><u> Welcome to BatsBnB! </u><center></h2>
+      <h2><center><u> BatsBnB - Hire or Rent your own Property! </u><center></h2>
   </div>
 
+
+  <% if @user %>
+      <h3>Welcome, <%= @user.email %></h3>
+  <% else %>
     <form action=/makersbnb/sign_up method='get'>
       <input type='submit' value='Sign Up!'>
     </form>
+  <% end %>
 
 
   </body>
