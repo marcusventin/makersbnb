@@ -24,7 +24,7 @@ Price per night: £ <%=@selected[0].ppn%>
   This space is also available on this date:
   <ul>
     <% @available_dates.each do |date| %>
-      <% unless date = params[:date] %>
+      <% unless date.date == params[:date] %>
         <li>
           <a href="/makersbnb/spaces/<%=@selected[0].id%>/book/<%=date.date%>"><%=date.date%>
         </li>
