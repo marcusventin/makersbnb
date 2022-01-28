@@ -48,18 +48,6 @@ class MakersBnB < Sinatra::Base
     redirect '/makersbnb'
   end
 
-  # post '/makersbnb/log_in/confirmation' do
-  #   # user = User.authenticate(email: params[:email], password: params[:password])
-  #   # if user
-  #   #   session[:user_id] = user.user_id
-  #   #   redirect '/makersbnb/log_in/confirmation'
-  #   # else
-  #   #   flash[:notice] = 'Please check your email or password.'
-  #   #   redirect'/makersbnb/log_in'
-  #   # end
-  #   redirect'/makersbnb/log_in'
-  # end
-
   get '/makersbnb/users/:user_id' do
     @user_space = Space.select_user(session[:user_id])
     erb :account
