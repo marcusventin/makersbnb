@@ -60,6 +60,7 @@ class User
     result = connection.exec_params("SELECT * FROM users WHERE email = $1",[email])
     
     return unless result.any?
+    return unless BCrypt::Password.new(result[0]['password']) == password
 
     User.new(user_id: result[0]['user_id'], email: result[0]['email'], password: result[0]['password'])
   end
