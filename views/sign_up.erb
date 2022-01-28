@@ -2,10 +2,10 @@
 <html>
 
 <head>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <div class="navbar-nav">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: #ff5555;">
+    <div class="navbar-nav">
       <a class="navar_brand" href="#" style="padding:0px;"> 
-      <img src="9b02d3f4f05d4d55b9b4c8e97c81c952.png" style="height:100%;">
+      <img src="/batsbnb.jpeg" style="height:100%;">
       </a>
         <a class="nav-item nav-link active" href="/makersbnb">Home</a>
         <a class="nav-item nav-link active" href="/makersbnb/users/sign_up">Sign Up</a>
@@ -18,29 +18,29 @@
 </head>
 
     <meta charset="utf-8">
-    <h1 style="text-align: center;">Welcome to MakersBnB</h1>
+    <h1 style="text-align: center;">Welcome to BatsBnB</h1>
     <h2 style="text-align: center;">Please Sign Up</h2>
     <title>Sign Up</title>
   
 
   <body>
     <form style="text-align: center;" action='/makersbnb/users/sign_up' method='post'>
-      Username: <input style="text-align: center;" type='text' name='email' placeholder='Type in username' >
+      Email: <input style="text-align: center;" type='text' name='email' placeholder='Type in email' >
       <br>Password:<input style="text-align: center;" type='password' name='password' placeholder='Enter a password'>
       <br><input type='submit' name='Submit'>
     </form>
+    
+    <form style="text-align: center;"action=/makersbnb/log_in method='get'>
+      Already have an account? Log in!
+      <input type='submit' value='Log In!'>
+    </form>
+    
   </body>
   <style>
   body {
-    background: #6272a4;
+    background: black;
     color: #ff5555;
     font-family: cursive;
   }
-  .diffrentfontsize {
-    font-size: 16px;
-  }
-  .anotherfontsize {font-family:
-font-size: 16px;}
-
   </style>
 </html>
