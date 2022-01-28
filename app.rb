@@ -30,7 +30,6 @@ class MakersBnB < Sinatra::Base
     User.sign_up(email: params[:email], password: params[:password])
     session[:user_id] = User.find_id
     redirect '/makersbnb/users/log_in'
-<<<<<<< HEAD
   end
 
   get '/makersbnb/users/log_in' do
@@ -46,25 +45,6 @@ class MakersBnB < Sinatra::Base
       flash[:notice] = 'Please check your email or password.'
       redirect '/makersbnb/users/log_in'
     end
-=======
->>>>>>> a97b911 (Updated signup route - redirects to log in page)
-  end
-
-  get '/makersbnb/users/log_in' do
-    erb :log_in
-  end
-
-  post '/makersbnb/users/log_in' do
-    user = User.authenticate(email: params[:email], password: params[:password])
-    
-    if user
-      session[:user_id] = user.user_id
-      redirect '/makersbnb'
-    else
-      flash[:notice] = 'Please check your email or password.'
-      redirect('makersbnb/users/log_in')
-    end
-
   end
 
   post '/makersbnb/users/sign_out' do
@@ -134,21 +114,3 @@ class MakersBnB < Sinatra::Base
 
   run! if app_file == $PROGRAM_NAME
 end
-
-<<<<<<< HEAD
-=======
-
->>>>>>> 8b07e9d (Created a sign-out feature)
-  # post '/makersbnb/signup' do
-  #   # testing = 'test@testing.com' =~ URI::MailTo::EMAIL_REGEXP
-  #   # p testing
-
-  #   # if params['email'] =~ URI::MailTo::EMAIL_REGEXP
-  #   User.sign_up(email: params[:email], password: params[:password])
-
-  #   # else
-  #   #   flash[:notice] = "You must submit a valid email address"
-  #   # end
-
-  #   redirect '/makersbnb/log_in'
-  # end
