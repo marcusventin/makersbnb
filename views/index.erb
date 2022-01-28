@@ -1,28 +1,41 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <div class="navbar-nav">
-        <a class="navar_brand" href="/makersbnb">MakersBnB</a>
+    <title>Homepage</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: #ff5555;">
+      <div class="navbar-nav" >
+        <a class="navar_brand" style="color: black">BatsBnB</a>
         <a class="nav-item nav-link active" href="/makersbnb">Home</a>
         <a class="nav-item nav-link active" href="/makersbnb/sign_up">Sign Up</a>
+        <a class="nav-item nav-link active" href="/makersbnb/log_in">Log In</a>
         <a class="nav-item nav-link active" href="/makersbnb/properties">Properties</a>
-        <form class="form-inline my-2 my-lg-0">
-          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
       </div>
     </nav>
-  </head>
   <br>
   <div style= 'border: 4mm ridge rgba(170, 50, 220, .6)'>
-      <h2><center><u> Welcome to MakersBnB! </u><center></h2>
+      <h2><center><u> BatsBnB - Hire or Rent your own Property! </u><center></h2>
   </div>
 
-  <body>
-   <form action=/makersbnb/sign_up method='get'>
+
+  <% if @user %>
+      <h3>Welcome, <%= @user.email %></h3>
+  <% else %>
+    <form action=/makersbnb/sign_up method='get'>
       <input type='submit' value='Sign Up!'>
     </form>
-  </body>
+  <% end %>
 
+
+  </body>
+  <style>
+  body {
+    background: black;
+    color: #ff5555;
+    font-family: cursive;
+  }
+
+
+  </style>
 </html>

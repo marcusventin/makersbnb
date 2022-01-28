@@ -4,24 +4,29 @@ require 'pg'
 require './lib/user'
 require './lib/space'
 require './lib/availability'
+require 'uri'
+require 'sinatra/flash'
 
 class MakersBnB < Sinatra::Base
   enable :sessions
+  register Sinatra::Flash
 
   configure :development do
     register Sinatra::Reloader
   end
 
   get '/makersbnb' do
+    @user = User.find(user_id: session[:user_id])
     erb :index 
   end
-
+  
   get '/makersbnb/sign_up' do
     erb :sign_up
   end
-
+  
   post '/makersbnb/sign_up' do
-    User.sign_up(user_name: params[:user_name], password: params[:password])
+    user = User.sign_up(email: params[:email], password: params[:password])
+    session[:user_id] = user.user_id
     redirect '/makersbnb'
   end
 
@@ -63,5 +68,38 @@ class MakersBnB < Sinatra::Base
   get '/makersbnb/space/:id/book/:date/confirmation' do
   end
 
+  get '/makersbnb/log_in' do
+    erb :log_in
+  end
+
+  post '/makersbnb/log_in/confirmation' do
+    # user = User.authenticate(email: params[:email], password: params[:password])
+    # if user
+    #   session[:user_id] = user.user_id
+    #   redirect '/makersbnb/log_in/confirmation'
+    # else
+    #   flash[:notice] = 'Please check your email or password.'
+    #   redirect'/makersbnb/log_in'
+    # end
+    redirect'/makersbnb/log_in'
+  end
+
   run! if app_file == $PROGRAM_NAME
 end
+
+
+
+
+  # post '/makersbnb/signup' do
+  #   # testing = 'test@testing.com' =~ URI::MailTo::EMAIL_REGEXP
+  #   # p testing
+
+  #   # if params['email'] =~ URI::MailTo::EMAIL_REGEXP
+  #   User.sign_up(email: params[:email], password: params[:password])
+
+  #   # else
+  #   #   flash[:notice] = "You must submit a valid email address"
+  #   # end
+
+  #   redirect '/makersbnb/log_in'
+  # end
