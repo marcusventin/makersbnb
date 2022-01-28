@@ -10,6 +10,7 @@ gem 'sinatra'
 gem 'sinatra-contrib'
 gem 'bootstrap', '~> 5.0.2'
 gem 'sinatra-flash'
+gem 'bcrypt'
 
 group :test do
   gem 'capybara'

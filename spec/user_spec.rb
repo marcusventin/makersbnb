@@ -1,5 +1,6 @@
 require 'pg'
 require 'user'
+require 'bcrypt'
 # require 'database_helpers'
 
 describe User do
@@ -13,8 +14,12 @@ describe User do
 
       expect(user1).to be_a User
       expect(user1.email).to eq 'landlord@rent.com'
-      expect(user1.password).to eq '123pass'
 
+    end
+
+    it 'hashes the password using BCrypt' do
+      expect(BCrypt::Password).to receive(:create).with('password123')
+      User.sign_up(email: 'test@example.com', password: 'password123')
     end
   end
 

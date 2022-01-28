@@ -1,4 +1,5 @@
 require 'pg'
+require 'bcrypt'
 
 class User
 
@@ -11,13 +12,17 @@ class User
   end
 
   def self.sign_up(email:, password:)
+    # encrypt the plantext password
+    encrypted_password = (BCrypt::Password).create(password)
+
     if ENV['ENVIRONMENT'] == 'test'
       connection = PG.connect(dbname: 'makersbnb_test')
     else
       connection = PG.connect(dbname: 'makersbnb')
     end
 
-    result = connection.exec_params("INSERT INTO users (email, password) VALUES($1, $2) RETURNING user_id, email, password;", [email , password])
+     # insert the encrypted password into the database, instead of the plaintext one
+    result = connection.exec_params("INSERT INTO users (email, password) VALUES($1, $2) RETURNING user_id, email;", [email , encrypted_password])
 
     User.new(user_id: result[0]['user_id'], email: result[0]['email'], password: result[0]['password'])
   end
