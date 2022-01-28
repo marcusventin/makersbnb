@@ -41,6 +41,7 @@ It is intended to satisfy the following user stories:
 
 ## Features
 Users can sign up to MakersBnB by registering a unique e-mail address and password. Once registered, they can list their own spaces, thus making them available to rent, as well as request to book other users' spaces.  
+
 Users can manage their booking requests through their account page.
 
 ## How to Use
