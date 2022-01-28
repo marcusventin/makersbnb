@@ -57,6 +57,8 @@ class MakersBnB < Sinatra::Base
 
   get '/makersbnb/users/:user_id' do
     @user_space = Space.select_user(session[:user_id])
+    @pending_bookings = Booking.view_pending(session[:user_id])
+    @confirmed_bookings = Booking.view_confirmed(session[:user_id])
     erb :account
   end 
   
