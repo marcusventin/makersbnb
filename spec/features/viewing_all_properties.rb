@@ -16,7 +16,6 @@ feature 'Viewing all the properties' do
     )
 
     visit ('/makersbnb/spaces')
-
     expect(page).to have_content 'NYC Penthouse'
     expect(page).to have_content 'Brooklyn Duplex'
 

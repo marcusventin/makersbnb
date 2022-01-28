@@ -3,7 +3,7 @@ require 'bcrypt'
 
 class User
 
-  attr_reader :user_id, :email , :password
+  attr_reader :user_id, :email, :password
 
   def initialize(user_id:, email:, password:)
     @user_id = user_id
@@ -21,7 +21,8 @@ class User
       connection = PG.connect(dbname: 'makersbnb')
     end
 
-    result = connection.exec_params("INSERT INTO users (email, password) VALUES($1, $2) RETURNING user_id, email;", [email , encrypted_password])
+    result = connection.exec_params("INSERT INTO users (email, password) VALUES($1, $2)
+    RETURNING user_id, email;", [email, encrypted_password])
     # insert the encrypted password into the database, instead of the plaintext one
     User.new(user_id: result[0]['user_id'], email: result[0]['email'],
     password: result[0]['password'])
@@ -48,7 +49,8 @@ class User
     
     result = connection.exec_params("SELECT * FROM users WHERE user_id = $1", [user_id])
     
-    User.new(user_id: result[0]['user_id'], email: result[0]['email'], password: result[0]['password'])
+    User.new(user_id: result[0]['user_id'], email: result[0]['email'],
+      password: result[0]['password'])
   end
 
   # def self.authenticate(email:, password:)
