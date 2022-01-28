@@ -2,6 +2,7 @@
   "result": {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     "line": 96.77
 =======
     "line": 92.93
@@ -9,5 +10,8 @@
 =======
     "line": 92.06
 >>>>>>> 93091c3 (User can't sign in with the incorrect email - flash notice appears)
+=======
+    "line": 92.17
+>>>>>>> 0de2f0e (User cannot sign in using the wrong password)
   }
 }

@@ -56,5 +56,21 @@ feature 'authentication' do
     expect(page).not_to have_content 'Welcome, test@example.com'
     expect(page).to have_content 'Please check your email or password.'
   end
+<<<<<<< HEAD
 end
 >>>>>>> 93091c3 (User can't sign in with the incorrect email - flash notice appears)
+=======
+
+  scenario 'a user sees an error if they get their email wrong' do
+    User.sign_up(email: 'test@example.com', password: 'password123')
+
+    visit '/makersbnb/log_in'
+    fill_in(:email, with: 'test@example.com'
+    fill_in(:password, with: 'incorrectpassword')
+    click_button('Log In!')
+
+    expect(page).not_to have_content 'Welcome, test@example.com'
+    expect(page).to have_content 'Please check your email or password.'
+  end
+end
+>>>>>>> 0de2f0e (User cannot sign in using the wrong password)
