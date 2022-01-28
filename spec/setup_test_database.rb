@@ -5,4 +5,5 @@ def setup_test_database
   connection.exec('TRUNCATE users;')
   connection.exec('TRUNCATE spaces;')
   connection.exec('TRUNCATE availability;')
+  connection.exec('TRUNCATE bookings')
 end

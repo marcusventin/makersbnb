@@ -17,7 +17,7 @@ Description: <%=@selected[0].description%>
 Price per night: £ <%=@selected[0].ppn%>
 <br>
 
-<form action='/makersbnb/space/:id/book/:date/confirmation'>
+<form action='/makersbnb/spaces/<%=@selected[0].id%>/book/<%=params[:date]%>/confirmation' method='post'>
   <input type='submit' name='submit_booking' value='Request Booking'>
 </form>
 
@@ -27,7 +27,7 @@ Price per night: £ <%=@selected[0].ppn%>
     <% @available_dates.each do |date| %>
       <% unless date.date == params[:date] %>
         <li>
-          <a href="/makersbnb/space/<%=@selected[0].id%>/book/<%=date.date%>"><%=date.date%>
+          <a href="/makersbnb/spaces/<%=@selected[0].id%>/book/<%=date.date%>"><%=date.date%>
         </li>
       <% end %>
     <% end %>
@@ -36,9 +36,9 @@ Price per night: £ <%=@selected[0].ppn%>
   This space is also available on this date:
   <ul>
     <% @available_dates.each do |date| %>
-      <% unless date.date = params[:date] %>
+      <% unless date.date == params[:date] %>
         <li>
-          <a href="/makersbnb/space/<%=@selected[0].id%>/book/<%=date.date%>"><%=date.date%>
+          <a href="/makersbnb/spaces/<%=@selected[0].id%>/book/<%=date.date%>"><%=date.date%>
         </li>
       <% end %>
     <% end %>

@@ -1,0 +1,6 @@
+<h1> Welcome to your account <%=@user_space[0].owner%><h1>
+<h2> Here is the list of your properties <h2>
+<% @user_space.each do |space| %>
+<%= space.name%>
+<% end %>
+

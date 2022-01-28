@@ -13,7 +13,7 @@ Name: <%=@selected[0].name%>
 <br>
 Description: <%=@selected[0].description%>
 <br>
-Price per night: £ <%=@selected[0].ppn%>
+Price per night: £<%=@selected[0].ppn%>
 <br>
 <% if @available_dates.empty? %>
   This property is currently unavailable
@@ -22,7 +22,7 @@ Price per night: £ <%=@selected[0].ppn%>
   <ul>
     <% @available_dates.each do |date| %>
       <li>
-        <a href="/makersbnb/space/<%=@selected[0].id%>/book/<%=date.date%>"><%=date.date%>
+        <a href="/makersbnb/spaces/<%=@selected[0].id%>/book/<%=date.date%>"><%=date.date%>
       </li>
     <% end %>
   </ul>
