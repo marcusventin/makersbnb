@@ -1,5 +1,18 @@
 <h1> Welcome to your account <%=@user_space[0].owner%><h1>
-<h2> Here is the list of your properties <h2>
+
+<h2> Here are your pending bookings</h2>
+<% @pending_bookings.each do |pending_booking| %>
+  <form action='/makersbnb/users/<%=pending_booking.ownerid%>/bookings/<%=pending_booking.id%>/confirm' method='post'>
+    <input type='submit' name='Confirm Booking'>
+  </form>
+<% end %>
+
+<h2> Here are your confirmed bookings</h2>
+<% @confirmed_bookings.each do |confirmed_booking| %>
+<%=confirmed_booking.date%>: <%confirmed_booking.space%>
+<% end %>
+
+<h2> Here are your spaces <h2>
 <% @user_space.each do |space| %>
 <%= space.name%>
 <% end %>

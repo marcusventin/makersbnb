@@ -34,9 +34,16 @@ class MakersBnB < Sinatra::Base
 
   get '/makersbnb/users/:user_id' do
     @user_space = Space.select_user(session[:user_id])
+    @pending_bookings = Booking.view_pending(session[:user_id])
+    @confirmed_bookings = Booking.view_confirmed(session[:user_id])
     erb :account
-  end 
-  
+  end
+
+  post '/makersbnb/users/:user_id/bookings/:bookingid/confirm' do
+    Booking.confirm(params[:bookingid])
+    redirect '/makersbnb/users/:user_id'
+  end
+
   get '/makersbnb/spaces/add' do
     erb(:add)
   end
@@ -46,8 +53,7 @@ class MakersBnB < Sinatra::Base
       name: params[:property_name], description: params[:property_description],
       ppn: params[:ppn], start_date: params[:start_date], end_date: params[:end_date],
       ownerid: session[:user_id]
-    )
-    
+    ) 
     redirect '/makersbnb/spaces/add/confirmation'
   end
 
@@ -97,14 +103,11 @@ class MakersBnB < Sinatra::Base
     #   flash[:notice] = 'Please check your email or password.'
     #   redirect'/makersbnb/log_in'
     # end
-    redirect'/makersbnb/log_in'
+    redirect '/makersbnb/log_in'
   end
 
   run! if app_file == $PROGRAM_NAME
 end
-
-
-
 
   # post '/makersbnb/signup' do
   #   # testing = 'test@testing.com' =~ URI::MailTo::EMAIL_REGEXP
@@ -119,4 +122,3 @@ end
 
   #   redirect '/makersbnb/log_in'
   # end
-
