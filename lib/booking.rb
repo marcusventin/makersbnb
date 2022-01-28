@@ -30,25 +30,6 @@ class Booking
     )
 
     result = connection.exec_params(
-    #   "INSERT INTO bookings (date, space, spaceid, owner, ownerid,
-    #   tenant, tenantid, ppn, status)
-    #   SELECT name, owner, ownerid, ppn
-    #   FROM spaces
-    #   WHERE spaces.id = $2
-    #   SELECT 
-    #   ($1,
-    #   SELECT name FROM spaces WHERE spaces.id = $2,
-    #   $2,
-    #   SELECT owner FROM spaces WHERE spaces.id = $2,
-    #   SELECT ownerid FROM spaces WHERE spaces.id = $2,
-    #   SELECT user_name FROM users WHERE users.user_id = $3,
-    #   $3,
-    #   SELECT ppn FROM spaces WHERE spaces.id = $2,
-    #   $4)
-    #   RETURNING id, date, space, spaceid, owner, ownerid, tenant, tenantid, ppn, status;",
-    #   [date, spaceid, tenantid, status]
-    # )
-      
       "INSERT INTO bookings (date, space, spaceid, owner, ownerid,
       tenant, tenantid, ppn, status)
       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
@@ -63,6 +44,65 @@ class Booking
       spaceid: result[0]['spaceid'], owner: result[0]['owner'], 
       ownerid: result[0]['ownerid'], tenant: result[0]['tenant'],
       tenantid: result[0]['tenantid'], ppn: result[0]['ppn'], status: result[0]['status']
+    )
+  end
+
+  def self.view_pending(user_id)
+    ENV['RACK_ENV'] == 'test' ?
+    connection = PG.connect(dbname: 'makersbnb_test')
+    : connection = PG.connect(dbname: 'makersbnb')
+
+    result = connection.exec_params("SELECT * FROM bookings WHERE ownerid = $1
+      AND status LIKE 'pending';", [user_id])
+
+    result.map do |result| Booking.new(
+      id: result['id'], date: result['date'], space: result['space'],
+      spaceid: result['spaceid'], owner: result['owner'], 
+      ownerid: result['ownerid'], tenant: result['tenant'],
+      tenantid: result['tenantid'], ppn: result['ppn'], status: result['status']
+    )
+    end
+  end
+
+  def self.view_confirmed(user_id)
+    ENV['RACK_ENV'] == 'test' ?
+    connection = PG.connect(dbname: 'makersbnb_test')
+    : connection = PG.connect(dbname: 'makersbnb')
+  
+    result = connection.exec_params("SELECT * FROM bookings WHERE ownerid = $1
+      AND status LIKE 'confirmed';", [user_id])
+  
+    result.map do |result| Booking.new(
+      id: result['id'], date: result['date'], space: result['space'],
+      spaceid: result['spaceid'], owner: result['owner'], 
+      ownerid: result['ownerid'], tenant: result['tenant'],
+      tenantid: result['tenantid'], ppn: result['ppn'], status: result['status']
+      )
+    end
+  end
+
+  def self.confirm(booking_id)
+    ENV['RACK_ENV'] == 'test' ?
+    connection = PG.connect(dbname: 'makersbnb_test')
+    : connection = PG.connect(dbname: 'makersbnb')
+    
+    connection.exec_params(
+      "UPDATE bookings SET status='confirmed'
+      WHERE id = $1", [booking_id]
+    )
+    
+    Availability.delete(booking_id)
+
+  end
+
+  def self.decline(booking_id)
+    ENV['RACK_ENV'] == 'test' ?
+    connection = PG.connect(dbname: 'makersbnb_test')
+    : connection = PG.connect(dbname: 'makersbnb')
+    
+    connection.exec_params(
+      "UPDATE bookings SET status='declined'
+      WHERE id = $1", [booking_id]
     )
   end
 end
