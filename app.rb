@@ -42,6 +42,12 @@ class MakersBnB < Sinatra::Base
     redirect '/makersbnb'
   end
 
+  post '/makersbnb/users/sign_out' do
+    session.clear
+    flash[:notice] = 'You have signed out.'
+    redirect '/makersbnb'
+  end
+
   # post '/makersbnb/log_in/confirmation' do
   #   # user = User.authenticate(email: params[:email], password: params[:password])
   #   # if user
@@ -108,8 +114,6 @@ class MakersBnB < Sinatra::Base
 
   run! if app_file == $PROGRAM_NAME
 end
-
-
 
 
   # post '/makersbnb/signup' do

@@ -22,17 +22,28 @@
       <h2><center><u> BatsBnB - Hire or Rent your own Property! </u><center></h2>
   </div>
 
-  <body>
-  <% if @user %>
-      <h3>Welcome, <%= @user.email %></h3>
-  <% else %>
-    <form action=/makersbnb/users/sign_up method='get'>
+  <body><center>
+    <h2>
+      <%= flash[:notice] %>
+    </h2>
 
+  <% if @user %>
+    <h3>Welcome, <%= @user.email %></h3>
+    <form action="/makersbnb/users/sign_out" method="post">
+      <input type="submit" value="Sign out" />
+    </form>
+  <% else %>
+    <form action=/makersbnb/users/log_in method='get'>
+      <input type='submit' value='Log In!'>
+    </form>
+    or 
+    <form action=/makersbnb/users/sign_up method='get'>
       <input type='submit' value='Sign Up!'>
     </form>
   <% end %>
 
 
+  </center>
   </body>
   <style>
   body {
