@@ -24,7 +24,7 @@
     <ul>
       <% @property_list.each do |property| %>
         <li><b>
-          <a href="/makersbnb/spaces/<%=property.id%>"><%=property.name %></b><br>
+          <a href="/makersbnb/spaces/<%=property.id%>" style="color: #ff5555;"><%=property.name %></b><br>
           £<%= property.ppn %><br>
           <%= property.description %>
         </li><br>
@@ -37,11 +37,9 @@
   </body>
   <style>
   body {
-    background: black;
+    background: Black;
     color: #ff5555;
     font-family: cursive;
   }
-
-
   </style>
 </html>
