@@ -1,4 +1,4 @@
-feature 'add properties' do
+feature 'add property' do
   scenario 'add a single property' do
     sign_up_and_add
 

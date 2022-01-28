@@ -7,7 +7,7 @@ require 'pg'
 # end
 
 def add_property
-  visit '/makersbnb/add'
+  visit '/makersbnb/spaces/add'
   fill_in 'property_name', with: 'test_property'
   fill_in 'property_description', with: 'test description'
   fill_in 'ppn', with: '100'
@@ -17,16 +17,19 @@ def add_property
 end
 
 def sign_up_and_add
-  visit 'makersbnb/sign_up'
+  visit 'makersbnb/users/sign_up'
   fill_in 'email', with: 'test_user@example.com'
   fill_in 'password', with: 'test password'
   click_button 'Submit'
-  visit '/makersbnb/properties'
-  click_button 'Add a property'
+  visit '/makersbnb/spaces/add'
   fill_in 'property_name', with: 'test_property'
   fill_in 'property_description', with: 'test description'
   fill_in 'ppn', with: '100'
   fill_in 'start_date', with: Date.today.to_s
   fill_in 'end_date', with: (Date.today + 1).to_s
   click_button 'Add'
+end
+
+def add_user
+  User.sign_up(email: 'test_user@example.com', password: 'test password')
 end

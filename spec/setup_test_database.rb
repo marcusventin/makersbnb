@@ -7,7 +7,3 @@ def setup_test_database
   connection.exec('TRUNCATE availability;')
   connection.exec('TRUNCATE bookings')
 end
-
-def add_user
-  User.sign_up(email: 'test_user@example.com', password: 'test password')
-end

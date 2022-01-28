@@ -15,7 +15,7 @@ feature 'Viewing all the properties' do
       end_date: (Date.today + 1).to_s
     )
 
-    visit ('/makersbnb/properties')
+    visit ('/makersbnb/spaces')
 
     expect(page).to have_content 'NYC Penthouse'
     expect(page).to have_content 'Brooklyn Duplex'

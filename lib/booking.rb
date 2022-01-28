@@ -49,7 +49,6 @@ class Booking
     #   [date, spaceid, tenantid, status]
     # )
       
-
       "INSERT INTO bookings (date, space, spaceid, owner, ownerid,
       tenant, tenantid, ppn, status)
       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)

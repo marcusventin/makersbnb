@@ -4,7 +4,7 @@ require 'user'
 
 describe User do
   
-  describe '#sign_up' do
+  describe '.sign_up' do
     it 'creates an account for the user' do
       connection = PG.connect(dbname: 'makersbnb_test')
 

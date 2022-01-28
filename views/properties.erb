@@ -6,8 +6,8 @@
       <div class="navbar-nav">
         <a class="navar_brand" href="/makersbnb">MakersBnB</a>
         <a class="nav-item nav-link active" href="/makersbnb">Home</a>
-        <a class="nav-item nav-link active" href="/makersbnb/sign_up">Sign Up</a>
-        <a class="nav-item nav-link active" href="/makersbnb/properties">Properties</a>
+        <a class="nav-item nav-link active" href="/makersbnb/users/sign_up">Sign Up</a>
+        <a class="nav-item nav-link active" href="/makersbnb/spaces">Properties</a>
         <form class="form-inline my-2 my-lg-0">
           <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
           <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
@@ -22,14 +22,14 @@
     <ul>
       <% @property_list.each do |property| %>
         <li><b>
-          <a href="/makersbnb/space/<%=property.id%>"><%=property.name %></b><br>
+          <a href="/makersbnb/spaces/<%=property.id%>"><%=property.name %></b><br>
           £<%= property.ppn %><br>
           <%= property.description %>
         </li><br>
       <% end %>
     </ul>
 
-    <form action=/makersbnb/add method='get'>
+    <form action=/makersbnb/spaces/add method='get'>
       <input type='submit' value='Add a property'>
     </form>
   </body>

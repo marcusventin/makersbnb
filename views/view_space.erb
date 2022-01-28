@@ -12,7 +12,7 @@ Price per night: £<%=@selected[0].ppn%>
   <ul>
     <% @available_dates.each do |date| %>
       <li>
-        <a href="/makersbnb/space/<%=@selected[0].id%>/book/<%=date.date%>"><%=date.date%>
+        <a href="/makersbnb/spaces/<%=@selected[0].id%>/book/<%=date.date%>"><%=date.date%>
       </li>
     <% end %>
   </ul>

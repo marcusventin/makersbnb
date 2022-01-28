@@ -1,7 +1,7 @@
 feature 'book spaces' do
   scenario 'receives confirmation' do
     add_property
-    visit '/makersbnb/properties'
+    visit '/makersbnb/spaces'
     click_link('test_property')
     click_link(Date.today.to_s)
     click_button('submit_booking')

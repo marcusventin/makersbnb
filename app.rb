@@ -17,69 +17,67 @@ class MakersBnB < Sinatra::Base
     erb :index 
   end
 
-  get '/makersbnb/sign_up' do
+  get '/makersbnb/users/sign_up' do
     erb :sign_up
   end
 
-  post '/makersbnb/sign_up' do
+  post '/makersbnb/users/sign_up' do
     User.sign_up(email: params[:email], password: params[:password])
     session[:user_id] = User.find_id
     redirect '/makersbnb'
   end
 
-  get '/makersbnb/add' do
+  get '/makersbnb/users/:user_id' do
+    @user_space = Space.select_user(session[:user_id])
+    erb :account
+  end 
+  
+  get '/makersbnb/spaces/add' do
     erb(:add)
   end
 
-  post '/makersbnb/add' do
+  post '/makersbnb/spaces/add' do
     Space.add(
       name: params[:property_name], description: params[:property_description],
       ppn: params[:ppn], start_date: params[:start_date], end_date: params[:end_date],
       ownerid: session[:user_id]
     )
     
-    redirect '/makersbnb/add/confirmation'
+    redirect '/makersbnb/spaces/add/confirmation'
   end
 
-  get '/makersbnb/add/confirmation' do
+  get '/makersbnb/spaces/add/confirmation' do
     @property = Space.all[-1]
     erb(:confirmation)
   end
 
-  get '/makersbnb/properties' do
+  get '/makersbnb/spaces' do
     @property_list = Space.all
     erb(:properties)
   end
 
-  get '/makersbnb/space/:id' do
+  get '/makersbnb/spaces/:id' do
     @selected = Space.select(params[:id])
     @available_dates = Availability.select_availability(params[:id])
     erb(:view_space)
   end
 
-  get '/makersbnb/space/:id/book/:date' do
+  get '/makersbnb/spaces/:id/book/:date' do
     @chosen_date = params[:date]
     @selected = Space.select(params[:id])
     @available_dates = Availability.select_availability(params[:id])
-    session[:user] = 'stand-in user'
     erb(:book_space)
   end
 
-  post '/makersbnb/space/:id/book/:date/confirmation' do
-    
+  post '/makersbnb/spaces/:id/book/:date/confirmation' do
     Booking.create(date: params[:date], spaceid: params[:id],
       tenantid: session[:user_id], status: 'pending')
-    redirect '/makersbnb/book/confirmation'
+    redirect '/makersbnb/spaces/book/confirmation'
   end
 
-  get '/makersbnb/book/confirmation' do
+  get '/makersbnb/spaces/book/confirmation' do
     'Your booking request has been submitted'
   end
-
-  get '/makersbnb/:user_id' do
-    @user_space = Space.select_user(session[:user_id])
-    erb :account
-  end 
 
   run! if app_file == $PROGRAM_NAME
 end
