@@ -29,7 +29,7 @@ class MakersBnB < Sinatra::Base
   post '/makersbnb/users/sign_up' do
     User.sign_up(email: params[:email], password: params[:password])
     session[:user_id] = User.find_id
-    redirect '/makersbnb'
+    redirect '/makersbnb/users/log_in'
   end
 
   get '/makersbnb/users/log_in' do
