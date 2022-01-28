@@ -1,9 +1,13 @@
 {
   "result": {
 <<<<<<< HEAD
+<<<<<<< HEAD
     "line": 96.77
 =======
     "line": 92.93
 >>>>>>> 8b07e9d (Created a sign-out feature)
+=======
+    "line": 92.06
+>>>>>>> 93091c3 (User can't sign in with the incorrect email - flash notice appears)
   }
 }
