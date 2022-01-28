@@ -85,6 +85,7 @@ class Booking
     ENV['RACK_ENV'] == 'test' ?
     connection = PG.connect(dbname: 'makersbnb_test')
     : connection = PG.connect(dbname: 'makersbnb')
+    
     connection.exec_params(
       "UPDATE bookings SET status='confirmed'
       WHERE id = $1", [booking_id]
@@ -96,5 +97,16 @@ class Booking
     connection.exec_params("DELETE FROM availability
       WHERE spaceid = #{booking_data[0]['spaceid']}
       AND date = '#{booking_data[0]['date']}'")
+  end
+
+  def self.decline(booking_id)
+    ENV['RACK_ENV'] == 'test' ?
+    connection = PG.connect(dbname: 'makersbnb_test')
+    : connection = PG.connect(dbname: 'makersbnb')
+    
+    connection.exec_params(
+      "UPDATE bookings SET status='declined'
+      WHERE id = $1", [booking_id]
+    )
   end
 end

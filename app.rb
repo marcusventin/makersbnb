@@ -39,8 +39,12 @@ class MakersBnB < Sinatra::Base
     erb :account
   end
 
-  post '/makersbnb/users/:user_id/bookings/:bookingid/confirm' do
-    Booking.confirm(params[:bookingid])
+  post '/makersbnb/users/:user_id/bookings/:bookingid/response' do
+    if params[:request_response] == 'Confirm Booking'
+      Booking.confirm(params[:bookingid])
+    elsif params[:request_response] == 'Decline Request'
+      Booking.decline(params[:bookingid])
+    end
     redirect '/makersbnb/users/:user_id'
   end
 

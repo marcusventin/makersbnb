@@ -3,8 +3,10 @@
 <% unless @pending_bookings.length == 0 %>
   <h2> Here are your pending bookings</h2>
   <% @pending_bookings.each do |pending_booking| %>
-    <form action='/makersbnb/users/<%=pending_booking.ownerid%>/bookings/<%=pending_booking.id%>/confirm' method='post'>
-      <input type='submit' name='Confirm Booking'>
+    <form action='/makersbnb/users/<%=pending_booking.ownerid%>/bookings/<%=pending_booking.id%>/response' method='post'>
+    <%=pending_booking.date%>: <%=pending_booking.space%>
+      <input type='submit' value='Confirm Booking' name='request_response'>
+      <input type='submit' value='Decline Request' name='request_response'>
     </form>
   <% end %>
 <% end %>
