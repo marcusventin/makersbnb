@@ -30,6 +30,7 @@ class MakersBnB < Sinatra::Base
     User.sign_up(email: params[:email], password: params[:password])
     session[:user_id] = User.find_id
     redirect '/makersbnb/users/log_in'
+<<<<<<< HEAD
   end
 
   get '/makersbnb/users/log_in' do
@@ -45,6 +46,8 @@ class MakersBnB < Sinatra::Base
       flash[:notice] = 'Please check your email or password.'
       redirect '/makersbnb/users/log_in'
     end
+=======
+>>>>>>> a97b911 (Updated signup route - redirects to log in page)
   end
 
   get '/makersbnb/users/log_in' do
