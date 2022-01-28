@@ -79,7 +79,6 @@ feature 'view account' do
   
     visit "/makersbnb/users/#{user_result[0]['user_id']}"
     click_button 'Confirm Booking'
-    save_and_open_page
     expect(page).not_to have_button 'Confirm Booking'
   end
 end
