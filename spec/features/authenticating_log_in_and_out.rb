@@ -13,10 +13,8 @@ feature 'authentication' do
   end
 
   scenario 'a user can sign out' do
-    # Create a test user
     User.sign_up(email: 'test@test.com', password: 'bats123')
 
-    # Then sign in as them
     visit '/makersbnb/users/log_in'
     fill_in(:email, with: 'test@test.com')
     fill_in(:password, with: 'bats123')
